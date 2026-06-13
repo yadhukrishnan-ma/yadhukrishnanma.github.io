@@ -573,6 +573,45 @@
       letter-spacing: 1px;
     }
 
+    /* ── project filters ── */
+    .project-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 40px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--dim);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 8px 20px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.25s;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    .filter-btn:hover {
+      color: var(--cyan);
+      border-color: var(--cyan);
+      background: rgba(0, 212, 255, 0.05);
+    }
+
+    .filter-btn.active {
+      color: #030a12;
+      background: var(--cyan);
+      border-color: var(--cyan);
+      font-weight: bold;
+    }
+
+    .project-card.hidden {
+      display: none !important;
+    }
+
     /* ── skills ── */
     .skills-layout {
       display: grid;
@@ -1254,7 +1293,7 @@
     /* humanoid evolution pathway styling */
     .evolution-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       position: relative;
     }
@@ -1504,6 +1543,232 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ── REAL HUMANOID ROBOTS SHOWCASE ── */
+    .robots-intro {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--text);
+      max-width: 700px;
+      margin-bottom: 48px;
+    }
+
+    .robots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .robot-card {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+      transition: all 0.35s ease;
+      cursor: default;
+    }
+
+    .robot-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 22px; height: 22px;
+      border-top: 1px solid var(--cyan);
+      border-right: 1px solid var(--cyan);
+      z-index: 2;
+    }
+
+    .robot-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,212,255,0.15);
+    }
+
+    .robot-card:hover .robot-svg-area {
+      background: rgba(0,212,255,0.04);
+    }
+
+    .robot-card:nth-child(2) { border-color: rgba(0,255,136,0.3); }
+    .robot-card:nth-child(2)::before { border-color: var(--green); }
+    .robot-card:nth-child(2):hover { border-color: var(--green); box-shadow: 0 20px 50px rgba(0,255,136,0.12); }
+
+    .robot-card:nth-child(4) { border-color: rgba(255,107,53,0.3); }
+    .robot-card:nth-child(4)::before { border-color: var(--orange); }
+    .robot-card:nth-child(4):hover { border-color: var(--orange); box-shadow: 0 20px 50px rgba(255,107,53,0.12); }
+
+    .robot-svg-area {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.3);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .robot-svg-area::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,212,255,0.02) 3px, rgba(0,212,255,0.02) 4px);
+      pointer-events: none;
+    }
+
+    .robot-svg-area svg {
+      width: 100px;
+      height: 180px;
+      animation: robotFloat 5s ease-in-out infinite;
+      filter: drop-shadow(0 0 12px currentColor);
+    }
+
+    .robot-card:nth-child(2) .robot-svg-area svg { animation-delay: -1.5s; }
+    .robot-card:nth-child(3) .robot-svg-area svg { animation-delay: -2.5s; }
+    .robot-card:nth-child(4) .robot-svg-area svg { animation-delay: -0.8s; }
+    .robot-card:nth-child(5) .robot-svg-area svg { animation-delay: -3.2s; }
+    .robot-card:nth-child(6) .robot-svg-area svg { animation-delay: -1.9s; }
+
+    @keyframes robotFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .robot-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      padding: 3px 8px;
+      border: 1px solid rgba(0,212,255,0.4);
+      color: var(--cyan);
+      background: rgba(3,10,18,0.8);
+      z-index: 3;
+    }
+
+    .robot-info {
+      padding: 20px 22px 24px;
+    }
+
+    .robot-manufacturer {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--dim);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .robot-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .robot-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .robot-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .spec-item {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+    }
+
+    .spec-key {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--dim);
+      letter-spacing: 1px;
+      display: block;
+    }
+
+    .spec-val {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      color: var(--cyan);
+      font-weight: 600;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .robot-card:nth-child(2) .spec-val { color: var(--green); }
+    .robot-card:nth-child(4) .spec-val { color: var(--orange); }
+
+    .robots-banner {
+      margin-top: 48px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .robots-banner::before {
+      content: 'FIELD ANALYSIS';
+      position: absolute;
+      top: -9px; left: 16px;
+      background: var(--bg);
+      padding: 0 8px;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      font-size: 10px;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    .banner-stat {
+      flex: 1;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      padding: 0 16px;
+    }
+
+    .banner-stat:last-child { border-right: none; }
+
+    .banner-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--cyan);
+      display: block;
+    }
+
+    .banner-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--dim);
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 992px) {
+      .robots-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .robots-grid { grid-template-columns: 1fr; }
+      .robots-banner { flex-direction: column; }
+      .banner-stat { border-right: none; border-bottom: 1px solid var(--border); padding: 12px 0; width: 100%; }
+      .banner-stat:last-child { border-bottom: none; }
+    }
   </style>
 </head>
 
@@ -1524,6 +1789,7 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#simulation">Simulation</a></li>
+      <li><a href="#robots">Robots</a></li>
       <li><a href="#evolution">Evolution</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -1619,7 +1885,7 @@
           <div class="stat-card hud-corners">
             <div class="hc-br"></div>
             <div class="hc-bl"></div>
-            <span class="stat-num">4+</span>
+            <span class="stat-num">12+</span>
             <span class="stat-label">ROS 2 Projects Completed</span>
           </div>
           <div class="stat-card hud-corners">
@@ -1651,9 +1917,18 @@
         <h2 class="section-title">PROJECTS</h2>
         <div class="section-line"></div>
       </div>
+
+      <div class="project-filters reveal reveal-delay-1">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="simulation">SIMULATION</button>
+        <button class="filter-btn" data-filter="navigation">NAVIGATION</button>
+        <button class="filter-btn" data-filter="perception">PERCEPTION</button>
+        <button class="filter-btn" data-filter="hardware">HARDWARE</button>
+      </div>
+
       <div class="projects-grid">
 
-        <div class="project-card reveal reveal-delay-1">
+        <div class="project-card reveal reveal-delay-1" data-category="simulation">
           <div class="project-index">PRJ-001 // SIMULATION</div>
           <div class="project-title">Differential Drive Robot</div>
           <p class="project-desc">
@@ -1670,7 +1945,7 @@
           </div>
         </div>
 
-        <div class="project-card reveal reveal-delay-2">
+        <div class="project-card reveal reveal-delay-2" data-category="navigation">
           <div class="project-index">PRJ-002 // NAVIGATION</div>
           <div class="project-title">Autonomous Navigation — Nav2</div>
           <p class="project-desc">
@@ -1687,7 +1962,7 @@
           </div>
         </div>
 
-        <div class="project-card reveal reveal-delay-3">
+        <div class="project-card reveal reveal-delay-3" data-category="perception navigation">
           <div class="project-index">PRJ-003 // PERCEPTION</div>
           <div class="project-title">LiDAR SLAM Mapping</div>
           <p class="project-desc">
@@ -1703,7 +1978,7 @@
           </div>
         </div>
 
-        <div class="project-card reveal reveal-delay-1" style="border-color:rgba(0,255,136,0.25);">
+        <div class="project-card reveal reveal-delay-1" style="border-color:rgba(0,255,136,0.25);" data-category="hardware">
           <div class="project-index" style="color:var(--green);">PRJ-004 // HARDWARE + ROS 2</div>
           <div class="project-title">ESP32 → ROS 2 · 5-DOF IMU Robotic Arm</div>
           <p class="project-desc">
@@ -1726,6 +2001,140 @@
           </div>
         </div>
 
+        <div class="project-card reveal reveal-delay-2" data-category="perception">
+          <div class="project-index">PRJ-005 // PERCEPTION</div>
+          <div class="project-title">Precision 6D Pose Calibration (SO-101)</div>
+          <p class="project-desc">
+            Developed a high-precision 6D pose tracking pipeline for the SO-101 robot arm. Implemented
+            adaptive thresholding to handle reflective overhead light noise, multi-face anchor sets to track
+            marker constellations at steep tilts (up to 66°), and a guided interactive calibration GUI.
+          </p>
+          <div class="project-tags">
+            <span class="tag">ROS 2</span>
+            <span class="tag">solvePnP</span>
+            <span class="tag">RANSAC</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">RViz2</span>
+            <span class="tag">Calibration</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-3" data-category="perception simulation">
+          <div class="project-index">PRJ-006 // PERCEPTION + AI</div>
+          <div class="project-title">Industrial 6D Pose via DenseFusion</div>
+          <p class="project-desc">
+            Designed a modular 6D object pose estimation pipeline. Combines YOLOv8 instance segmentation
+            masks with a DenseFusion model to fuse RGB appearance (ResNet-18) and 3D geometric point clouds
+            (PointNet) for per-point pose voting and iterative refinement.
+          </p>
+          <div class="project-tags">
+            <span class="tag">DenseFusion</span>
+            <span class="tag">YOLOv8</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">Open3D</span>
+            <span class="tag">CUDA</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-1" data-category="perception hardware">
+          <div class="project-index">PRJ-007 // PERCEPTION + HARDWARE</div>
+          <div class="project-title">ArUco Marker 6-DOF Ground Truth Tracker</div>
+          <p class="project-desc">
+            Created a ROS 2 node using a laptop camera to track 3.7cm ArUco markers on a robotic arm.
+            Uses solvePnP with IPPE_SQUARE, applies a 5-frame moving average filter, and publishes pose accuracy
+            comparisons against Forward Kinematics wrist coordinates in real time.
+          </p>
+          <div class="project-tags">
+            <span class="tag">ArUco</span>
+            <span class="tag">solvePnP</span>
+            <span class="tag">PoseStamped</span>
+            <span class="tag">Sensor Calibration</span>
+            <span class="tag">ROS 2</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-2" data-category="navigation simulation">
+          <div class="project-index">PRJ-008 // NAVIGATION + SIMULATION</div>
+          <div class="project-title">Autonomous TurtleBot Stack</div>
+          <p class="project-desc">
+            Engineered a complete simulation and localization stack for a custom 12.6cm x 12.6cm TurtleBot.
+            Developed a detailed URDF description and configured custom Nav2 costmaps and footprints for
+            navigation through tight spaces.
+          </p>
+          <div class="project-tags">
+            <span class="tag">ROS 2</span>
+            <span class="tag">Cartographer</span>
+            <span class="tag">Nav2</span>
+            <span class="tag">URDF</span>
+            <span class="tag">Costmaps</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-3" data-category="hardware">
+          <div class="project-index">PRJ-009 // HARDWARE + DEPLOYMENT</div>
+          <div class="project-title">TortoiseBot Remote Deployment &amp; Diagnostics</div>
+          <p class="project-desc">
+            Configured netplan and ROS network parameters for Raspberry Pi 4-based TortoiseBot systems.
+            Developed a remote python diagnostic suite verifying motor drivers, compressed camera feeds,
+            and LiDAR scanning topics.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Raspberry Pi</span>
+            <span class="tag">Netplan</span>
+            <span class="tag">SSH</span>
+            <span class="tag">Diagnostics</span>
+            <span class="tag">L298N</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-1" data-category="perception">
+          <div class="project-index">PRJ-010 // PERCEPTION + CONTROL</div>
+          <div class="project-title">Webcam-Based Arm Motion Capture</div>
+          <p class="project-desc">
+            Built an interface that tracks human arm gestures using Google MediaPipe Pose and updates a 3D
+            robot model in RViz2 in real time at 30 FPS. Reads camera streams and maps right arm joint angles.
+          </p>
+          <div class="project-tags">
+            <span class="tag">MediaPipe</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">ROS 2</span>
+            <span class="tag">RViz2</span>
+            <span class="tag">JointState</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-2" data-category="simulation">
+          <div class="project-index">PRJ-011 // SIMULATION + CONTROL</div>
+          <div class="project-title">Gazebo Learning from Demonstration (LfD)</div>
+          <p class="project-desc">
+            Programmed a simulated 3-DOF robot arm to approach, sweep, and align physical objects. Uses
+            geometric Inverse Kinematics and a custom task orchestrator service to reset the simulation and run
+            motions.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Gazebo</span>
+            <span class="tag">Inverse Kinematics</span>
+            <span class="tag">task_orchestrator</span>
+            <span class="tag">ROS 2</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-3" data-category="simulation">
+          <div class="project-index">PRJ-012 // SIMULATION + AI</div>
+          <div class="project-title">Gazebo Smart Traffic Simulation</div>
+          <p class="project-desc">
+            Built an intelligent traffic controller in Gazebo featuring emergency vehicle tracking and priority green-light
+            triggers up to 50m away, along with automated speed-deceleration collision avoidance.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Gazebo</span>
+            <span class="tag">Smart Traffic</span>
+            <span class="tag">Collision Avoidance</span>
+            <span class="tag">Orphan Cleanup</span>
+            <span class="tag">ROS 2</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1742,35 +2151,36 @@
 
           <div class="skill-item">
             <div class="skill-meta"><span class="skill-name">ROS 2 / Robotics Middleware</span><span
+                class="skill-pct">92%</span></div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-pct="92"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-meta"><span class="skill-name">SLAM &amp; Autonomous Navigation</span><span
                 class="skill-pct">88%</span></div>
             <div class="skill-bar-track">
               <div class="skill-bar-fill" data-pct="88"></div>
             </div>
           </div>
           <div class="skill-item">
-            <div class="skill-meta"><span class="skill-name">SLAM &amp; Autonomous Navigation</span><span
-                class="skill-pct">82%</span></div>
+            <div class="skill-meta"><span class="skill-name">Computer Vision &amp; 6D Estimation</span><span
+                class="skill-pct">85%</span></div>
             <div class="skill-bar-track">
-              <div class="skill-bar-fill" data-pct="82"></div>
+              <div class="skill-bar-fill" data-pct="85"></div>
             </div>
           </div>
           <div class="skill-item">
-            <div class="skill-meta"><span class="skill-name">Python</span><span class="skill-pct">80%</span></div>
+            <div class="skill-meta"><span class="skill-name">Python</span><span class="skill-pct">85%</span></div>
             <div class="skill-bar-track">
-              <div class="skill-bar-fill" data-pct="80"></div>
+              <div class="skill-bar-fill" data-pct="85"></div>
             </div>
           </div>
           <div class="skill-item">
-            <div class="skill-meta"><span class="skill-name">C / Systems Programming</span><span
-                class="skill-pct">70%</span></div>
+            <div class="skill-meta"><span class="skill-name">C / C++ Systems Programming</span><span
+                class="skill-pct">75%</span></div>
             <div class="skill-bar-track">
-              <div class="skill-bar-fill" data-pct="70"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-meta"><span class="skill-name">Java</span><span class="skill-pct">65%</span></div>
-            <div class="skill-bar-track">
-              <div class="skill-bar-fill" data-pct="65"></div>
+              <div class="skill-bar-fill" data-pct="75"></div>
             </div>
           </div>
         </div>
@@ -1786,21 +2196,23 @@
             <div class="tool-chip"><span>TF2</span></div>
             <div class="tool-chip"><span>URDF / xacro</span></div>
             <div class="tool-chip"><span>ESP32</span></div>
-            <div class="tool-chip"><span>Arduino IDE</span></div>
-            <div class="tool-chip"><span>TinkerCAD</span></div>
+            <div class="tool-chip"><span>OpenCV</span></div>
+            <div class="tool-chip"><span>MediaPipe</span></div>
+            <div class="tool-chip"><span>YOLOv8</span></div>
+            <div class="tool-chip"><span>PyTorch</span></div>
             <div class="tool-chip"><span>Ubuntu / Linux</span></div>
             <div class="tool-chip"><span>Git</span></div>
           </div>
 
           <p class="skill-group-title" style="margin-top:36px;">ROBOTICS KNOWLEDGE</p>
           <div class="tools-grid">
-            <div class="tool-chip"><span>Kinematics</span></div>
-            <div class="tool-chip"><span>Odometry</span></div>
-            <div class="tool-chip"><span>Sensor Fusion</span></div>
+            <div class="tool-chip"><span>6D Pose Estimation</span></div>
+            <div class="tool-chip"><span>Inverse Kinematics (IK)</span></div>
+            <div class="tool-chip"><span>Sensor Fusion / EKF</span></div>
+            <div class="tool-chip"><span>Computer Vision</span></div>
+            <div class="tool-chip"><span>Path Planning</span></div>
             <div class="tool-chip"><span>Costmaps</span></div>
             <div class="tool-chip"><span>PID Control</span></div>
-            <div class="tool-chip"><span>Path Planning</span></div>
-            <div class="tool-chip"><span>IMU / Quaternions</span></div>
             <div class="tool-chip"><span>Embedded Systems</span></div>
           </div>
         </div>
@@ -1852,94 +2264,390 @@
       </div>
     </section>
 
+    <!-- ░░ REAL HUMANOID ROBOTS ░░ -->
+    <section id="robots">
+      <div class="section-header reveal">
+        <span class="section-num">05</span>
+        <h2 class="section-title">HUMANOID ROBOTS</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <p class="robots-intro reveal reveal-delay-1">
+        The frontier of humanoid robotics is advancing at an unprecedented pace. These real machines — engineered by the
+        world's leading robotics labs — represent the convergence of AI, biomechanics, and advanced control theory.
+        As a robotics engineer, I study and draw inspiration from these platforms every day.
+      </p>
+
+      <div class="robots-grid">
+
+        <!-- ATLAS -->
+        <div class="robot-card reveal reveal-delay-1">
+          <div class="robot-svg-area">
+            <div class="robot-badge">GENERATION 5</div>
+            <svg viewBox="0 0 100 180" fill="none" stroke="#00d4ff" stroke-width="1.5">
+              <!-- Head -->
+              <rect x="35" y="4" width="30" height="24" rx="4"/>
+              <rect x="42" y="10" width="7" height="5" rx="1"/>
+              <rect x="51" y="10" width="7" height="5" rx="1"/>
+              <line x1="50" y1="28" x2="50" y2="34"/>
+              <!-- Torso -->
+              <rect x="28" y="34" width="44" height="48" rx="4"/>
+              <line x1="28" y1="50" x2="72" y2="50"/>
+              <rect x="36" y="54" width="28" height="18" rx="2"/>
+              <!-- Arms -->
+              <rect x="10" y="36" width="16" height="36" rx="6"/>
+              <rect x="74" y="36" width="16" height="36" rx="6"/>
+              <rect x="8"  y="72" width="12" height="20" rx="4"/>
+              <rect x="80" y="72" width="12" height="20" rx="4"/>
+              <!-- Hips -->
+              <rect x="30" y="82" width="40" height="14" rx="3"/>
+              <!-- Legs -->
+              <rect x="30" y="96" width="17" height="42" rx="5"/>
+              <rect x="53" y="96" width="17" height="42" rx="5"/>
+              <!-- Feet -->
+              <rect x="27" y="138" width="22" height="10" rx="3"/>
+              <rect x="51" y="138" width="22" height="10" rx="3"/>
+              <!-- Glow dots -->
+              <circle cx="50" cy="46" r="3" fill="#00d4ff" opacity="0.6"/>
+              <circle cx="18" cy="54" r="2" fill="#00d4ff" opacity="0.4"/>
+              <circle cx="82" cy="54" r="2" fill="#00d4ff" opacity="0.4"/>
+            </svg>
+          </div>
+          <div class="robot-info">
+            <div class="robot-manufacturer">Boston Dynamics · USA · 2013–Present</div>
+            <div class="robot-name">Atlas</div>
+            <p class="robot-desc">The world's most dynamic humanoid robot. Capable of parkour, backflips, and complex manipulation tasks. Fully electric since 2024 with hydraulic-free design.</p>
+            <div class="robot-specs">
+              <div class="spec-item"><span class="spec-key">HEIGHT</span><span class="spec-val">1.5 m</span></div>
+              <div class="spec-item"><span class="spec-key">WEIGHT</span><span class="spec-val">89 kg</span></div>
+              <div class="spec-item"><span class="spec-key">DOF</span><span class="spec-val">28 Joints</span></div>
+              <div class="spec-item"><span class="spec-key">ACTUATORS</span><span class="spec-val">Electric</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TESLA OPTIMUS -->
+        <div class="robot-card reveal reveal-delay-2">
+          <div class="robot-svg-area">
+            <div class="robot-badge" style="border-color:rgba(0,255,136,0.5);color:var(--green);">GEN 2</div>
+            <svg viewBox="0 0 100 180" fill="none" stroke="#00ff88" stroke-width="1.5">
+              <rect x="36" y="4" width="28" height="26" rx="14"/>
+              <circle cx="44" cy="14" r="4" fill="#00ff88" opacity="0.3"/>
+              <circle cx="56" cy="14" r="4" fill="#00ff88" opacity="0.3"/>
+              <line x1="50" y1="30" x2="50" y2="36"/>
+              <rect x="26" y="36" width="48" height="50" rx="6"/>
+              <line x1="26" y1="54" x2="74" y2="54"/>
+              <rect x="34" y="57" width="32" height="20" rx="3"/>
+              <circle cx="50" cy="67" r="6" fill="#00ff88" opacity="0.2"/>
+              <rect x="8"  y="38" width="16" height="34" rx="7"/>
+              <rect x="76" y="38" width="16" height="34" rx="7"/>
+              <rect x="7"  y="72" width="14" height="18" rx="5"/>
+              <rect x="79" y="72" width="14" height="18" rx="5"/>
+              <rect x="28" y="86" width="44" height="12" rx="3"/>
+              <rect x="28" y="98" width="19" height="44" rx="6"/>
+              <rect x="53" y="98" width="19" height="44" rx="6"/>
+              <rect x="25" y="142" width="24" height="10" rx="3"/>
+              <rect x="51" y="142" width="24" height="10" rx="3"/>
+              <circle cx="50" cy="48" r="3" fill="#00ff88" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="robot-info">
+            <div class="robot-manufacturer" style="color:var(--green)">Tesla · USA · 2022–Present</div>
+            <div class="robot-name">Optimus Gen 2</div>
+            <p class="robot-desc">Tesla's humanoid powered by the same FSD AI chip that drives its cars. Capable of hand-eye coordination tasks, walking at 0.5 m/s and delicate object manipulation.</p>
+            <div class="robot-specs">
+              <div class="spec-item"><span class="spec-key">HEIGHT</span><span class="spec-val">1.73 m</span></div>
+              <div class="spec-item"><span class="spec-key">WEIGHT</span><span class="spec-val">57 kg</span></div>
+              <div class="spec-item"><span class="spec-key">DOF</span><span class="spec-val">28 Joints</span></div>
+              <div class="spec-item"><span class="spec-key">SPEED</span><span class="spec-val">0.5 m/s</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FIGURE 01 -->
+        <div class="robot-card reveal reveal-delay-3">
+          <div class="robot-svg-area">
+            <div class="robot-badge">COMMERCIAL</div>
+            <svg viewBox="0 0 100 180" fill="none" stroke="#00d4ff" stroke-width="1.5">
+              <ellipse cx="50" cy="17" rx="16" ry="15"/>
+              <rect x="41" y="10" width="7" height="5" rx="1"/>
+              <rect x="52" y="10" width="7" height="5" rx="1"/>
+              <line x1="50" y1="32" x2="50" y2="38"/>
+              <rect x="27" y="38" width="46" height="46" rx="5"/>
+              <path d="M27 54 Q50 58 73 54"/>
+              <rect x="35" y="56" width="30" height="20" rx="2"/>
+              <rect x="9"  y="40" width="16" height="32" rx="6"/>
+              <rect x="75" y="40" width="16" height="32" rx="6"/>
+              <rect x="8"  y="72" width="13" height="16" rx="5"/>
+              <rect x="79" y="72" width="13" height="16" rx="5"/>
+              <rect x="29" y="84" width="42" height="12" rx="3"/>
+              <rect x="29" y="96" width="18" height="46" rx="5"/>
+              <rect x="53" y="96" width="18" height="46" rx="5"/>
+              <rect x="26" y="142" width="23" height="10" rx="3"/>
+              <rect x="51" y="142" width="23" height="10" rx="3"/>
+              <line x1="35" y1="68" x2="65" y2="68"/>
+              <circle cx="50" cy="46" r="2.5" fill="#00d4ff" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="robot-info">
+            <div class="robot-manufacturer">Figure AI · USA · 2022–Present</div>
+            <div class="robot-name">Figure 01</div>
+            <p class="robot-desc">Designed for commercial deployment in factories. Partners with BMW and OpenAI. Integrates large multimodal AI models for natural language task execution and reasoning.</p>
+            <div class="robot-specs">
+              <div class="spec-item"><span class="spec-key">HEIGHT</span><span class="spec-val">1.70 m</span></div>
+              <div class="spec-item"><span class="spec-key">WEIGHT</span><span class="spec-val">60 kg</span></div>
+              <div class="spec-item"><span class="spec-key">PAYLOAD</span><span class="spec-val">20 kg</span></div>
+              <div class="spec-item"><span class="spec-key">RUNTIME</span><span class="spec-val">5 hrs</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- UNITREE H1 -->
+        <div class="robot-card reveal reveal-delay-1">
+          <div class="robot-svg-area">
+            <div class="robot-badge" style="border-color:rgba(255,107,53,0.5);color:var(--orange);">OPEN PLATFORM</div>
+            <svg viewBox="0 0 100 180" fill="none" stroke="#ff6b35" stroke-width="1.5">
+              <rect x="37" y="4" width="26" height="22" rx="4"/>
+              <line x1="43" y1="10" x2="57" y2="10"/>
+              <rect x="43" y="13" width="14" height="7" rx="1"/>
+              <line x1="50" y1="26" x2="50" y2="34"/>
+              <rect x="25" y="34" width="50" height="50" rx="5"/>
+              <rect x="33" y="42" width="14" height="10" rx="2"/>
+              <rect x="53" y="42" width="14" height="10" rx="2"/>
+              <line x1="25" y1="56" x2="75" y2="56"/>
+              <rect x="33" y="60" width="34" height="16" rx="2"/>
+              <rect x="8"  y="36" width="15" height="32" rx="6"/>
+              <rect x="77" y="36" width="15" height="32" rx="6"/>
+              <rect x="7"  y="68" width="12" height="16" rx="4"/>
+              <rect x="81" y="68" width="12" height="16" rx="4"/>
+              <rect x="27" y="84" width="46" height="12" rx="3"/>
+              <rect x="27" y="96" width="20" height="46" rx="5"/>
+              <rect x="53" y="96" width="20" height="46" rx="5"/>
+              <rect x="24" y="142" width="26" height="10" rx="3"/>
+              <rect x="50" y="142" width="26" height="10" rx="3"/>
+              <circle cx="50" cy="50" r="3" fill="#ff6b35" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="robot-info">
+            <div class="robot-manufacturer" style="color:var(--orange)">Unitree Robotics · China · 2023–Present</div>
+            <div class="robot-name">Unitree H1</div>
+            <p class="robot-desc">World's fastest full-size humanoid robot. Reached 3.3 m/s running speed. Open research platform with ROS 2 support — directly relevant to my development stack.</p>
+            <div class="robot-specs">
+              <div class="spec-item"><span class="spec-key">HEIGHT</span><span class="spec-val">1.80 m</span></div>
+              <div class="spec-item"><span class="spec-key">SPEED</span><span class="spec-val">3.3 m/s</span></div>
+              <div class="spec-item"><span class="spec-key">DOF</span><span class="spec-val">19 Joints</span></div>
+              <div class="spec-item"><span class="spec-key">STACK</span><span class="spec-val">ROS 2</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AGILITY DIGIT -->
+        <div class="robot-card reveal reveal-delay-2">
+          <div class="robot-svg-area">
+            <div class="robot-badge">LOGISTICS</div>
+            <svg viewBox="0 0 100 180" fill="none" stroke="#00d4ff" stroke-width="1.5">
+              <ellipse cx="50" cy="15" rx="13" ry="13"/>
+              <circle cx="44" cy="13" r="3" fill="#00d4ff" opacity="0.4"/>
+              <circle cx="56" cy="13" r="3" fill="#00d4ff" opacity="0.4"/>
+              <line x1="50" y1="28" x2="50" y2="36"/>
+              <rect x="28" y="36" width="44" height="44" rx="8"/>
+              <circle cx="50" cy="58" r="10" stroke="#00d4ff" stroke-width="1" fill="rgba(0,212,255,0.05)"/>
+              <rect x="10" y="38" width="16" height="30" rx="7"/>
+              <rect x="74" y="38" width="16" height="30" rx="7"/>
+              <rect x="9"  y="68" width="13" height="14" rx="4"/>
+              <rect x="78" y="68" width="13" height="14" rx="4"/>
+              <rect x="30" y="80" width="40" height="10" rx="3"/>
+              <!-- Bird legs (Digit's characteristic) -->
+              <path d="M36 90 L30 120 L34 142" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <path d="M64 90 L70 120 L66 142" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <rect x="24" y="140" width="22" height="9" rx="3"/>
+              <rect x="54" y="140" width="22" height="9" rx="3"/>
+              <circle cx="50" cy="46" r="2" fill="#00d4ff" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="robot-info">
+            <div class="robot-manufacturer">Agility Robotics · USA · 2020–Present</div>
+            <div class="robot-name">Digit</div>
+            <p class="robot-desc">Purpose-built for logistics and warehouse automation. Deployed at Amazon fulfillment centers. Features reverse-knee "bird leg" design inspired by avian biomechanics for efficiency.</p>
+            <div class="robot-specs">
+              <div class="spec-item"><span class="spec-key">HEIGHT</span><span class="spec-val">1.75 m</span></div>
+              <div class="spec-item"><span class="spec-key">PAYLOAD</span><span class="spec-val">16 kg</span></div>
+              <div class="spec-item"><span class="spec-key">DOF</span><span class="spec-val">30 Joints</span></div>
+              <div class="spec-item"><span class="spec-key">DEPLOYED</span><span class="spec-val">Amazon</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SANCTUARY PHOENIX -->
+        <div class="robot-card reveal reveal-delay-3">
+          <div class="robot-svg-area">
+            <div class="robot-badge">DEXTERITY</div>
+            <svg viewBox="0 0 100 180" fill="none" stroke="#00d4ff" stroke-width="1.5">
+              <rect x="36" y="3" width="28" height="26" rx="5"/>
+              <rect x="42" y="9" width="6" height="6" rx="2"/>
+              <rect x="52" y="9" width="6" height="6" rx="2"/>
+              <line x1="46" y1="21" x2="54" y2="21"/>
+              <line x1="50" y1="29" x2="50" y2="36"/>
+              <rect x="26" y="36" width="48" height="48" rx="6"/>
+              <line x1="26" y1="52" x2="74" y2="52"/>
+              <rect x="34" y="55" width="32" height="22" rx="3"/>
+              <path d="M38 60 L62 60 M38 66 L60 66 M38 72 L56 72"/>
+              <rect x="8"  y="38" width="16" height="30" rx="6"/>
+              <rect x="76" y="38" width="16" height="30" rx="6"/>
+              <!-- Expressive hands -->
+              <rect x="7"  y="68" width="8" height="14" rx="3"/>
+              <rect x="17" y="68" width="4" height="10" rx="2"/>
+              <rect x="79" y="68" width="8" height="14" rx="3"/>
+              <rect x="75" y="68" width="4" height="10" rx="2"/>
+              <rect x="28" y="84" width="44" height="12" rx="3"/>
+              <rect x="28" y="96" width="19" height="46" rx="5"/>
+              <rect x="53" y="96" width="19" height="46" rx="5"/>
+              <rect x="25" y="142" width="24" height="10" rx="3"/>
+              <rect x="51" y="142" width="24" height="10" rx="3"/>
+              <circle cx="50" cy="44" r="3" fill="#00d4ff" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="robot-info">
+            <div class="robot-manufacturer">Sanctuary AI · Canada · 2018–Present</div>
+            <div class="robot-name">Phoenix</div>
+            <p class="robot-desc">World's first human-like AI control system "Carbon" controlling a humanoid. Exceptional hand dexterity with 20 DOF hands. Focused on cognitive AI and general-purpose task learning.</p>
+            <div class="robot-specs">
+              <div class="spec-item"><span class="spec-key">HEIGHT</span><span class="spec-val">1.67 m</span></div>
+              <div class="spec-item"><span class="spec-key">HAND DOF</span><span class="spec-val">20 DOF</span></div>
+              <div class="spec-item"><span class="spec-key">AI</span><span class="spec-val">Carbon LLM</span></div>
+              <div class="spec-item"><span class="spec-key">TASKS</span><span class="spec-val">100+</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /robots-grid -->
+
+      <!-- Stats Banner -->
+      <div class="robots-banner reveal reveal-delay-2">
+        <div class="banner-stat">
+          <span class="banner-num">6+</span>
+          <div class="banner-label">Major Humanoid Platforms</div>
+        </div>
+        <div class="banner-stat">
+          <span class="banner-num">28+</span>
+          <div class="banner-label">Avg Degrees of Freedom</div>
+        </div>
+        <div class="banner-stat">
+          <span class="banner-num">3.3</span>
+          <div class="banner-label">m/s Peak Bipedal Speed</div>
+        </div>
+        <div class="banner-stat">
+          <span class="banner-num">$10B+</span>
+          <div class="banner-label">Global R&D Investment 2024</div>
+        </div>
+        <div class="banner-stat">
+          <span class="banner-num" style="color:var(--green)">NOW</span>
+          <div class="banner-label">Deploying in Real World</div>
+        </div>
+      </div>
+
+    </section>
+
     <!-- ░░ HUMANOID EVOLUTION ░░ -->
     <section id="evolution">
       <div class="section-header reveal">
-        <span class="section-num">05</span>
+        <span class="section-num">06</span>
         <h2 class="section-title">HUMANOID EVOLUTION</h2>
         <div class="section-line"></div>
       </div>
 
-      <div class="evo-section-layout reveal reveal-delay-1">
-        <div class="evolution-grid">
-          <!-- Phase 1 -->
-          <div class="evolution-card completed-phase" data-phase="1">
-            <div class="evo-phase">PHASE 01 // COMPLETED</div>
-            <h3 class="evo-title">Kinematics &amp; Manipulation</h3>
-            <p class="evo-desc">
-              Focuses on joint actuators, coordinate transforms, forward/inverse kinematics, and real-time hardware
-              interface.
-            </p>
-            <div
-              style="font-family:'Share Tech Mono', monospace; font-size:11px; margin-bottom:12px; color:var(--cyan); line-height: 1.5;">
-              ▶ MPU-6500 Serial Bridge<br>
-              ▶ 5-DOF Joint Angles URDF
-            </div>
-            <div class="evo-status-pill">CORE INTEGRATION ACTIVE</div>
-          </div>
-
-          <!-- Phase 2 -->
-          <div class="evolution-card completed-phase" data-phase="2">
-            <div class="evo-phase">PHASE 02 // COMPLETED</div>
-            <h3 class="evo-title">Locomotion &amp; Spatial Awareness</h3>
-            <p class="evo-desc">
-              Implementing wheeled locomotion platforms, LiDAR scan-matching, A* path planning, local costmaps, and
-              autonomous SLAM navigation.
-            </p>
-            <div
-              style="font-family:'Share Tech Mono', monospace; font-size:11px; margin-bottom:12px; color:var(--cyan); line-height: 1.5;">
-              ▶ SLAM Toolbox Mapping<br>
-              ▶ Nav2 Obstacle Avoidance
-            </div>
-            <div class="evo-status-pill">CORE AUTONOMY ONLINE</div>
-          </div>
-
-          <!-- Phase 3 -->
-          <div class="evolution-card active-phase" data-phase="3">
-            <div class="evo-phase" style="color:var(--green);">PHASE 03 // ACTIVE IN PROGRESS</div>
-            <h3 class="evo-title" style="color:var(--green);">Cognitive Control &amp; AI</h3>
-            <p class="evo-desc">
-              Integrating computer vision pipelines, depth estimation, spatial AI, and Task Planning leveraging LLM/VLA
-              models for real-world interactions.
-            </p>
-            <div
-              style="font-family:'Share Tech Mono', monospace; font-size:11px; margin-bottom:12px; color:var(--green); line-height: 1.5;">
-              ▶ Spatial VLA Task Planning<br>
-              ▶ 3D Object Detection &amp; Pose
-            </div>
-            <div class="evo-status-pill">DEVELOPMENT PHASE</div>
-          </div>
-
-          <!-- Phase 4 -->
-          <div class="evolution-card future-phase" data-phase="4">
-            <div class="evo-phase" style="color:var(--orange);">PHASE 04 // FUTURE HORIZON</div>
-            <h3 class="evo-title" style="color:var(--orange);">Humanoid Integration</h3>
-            <p class="evo-desc">
-              Bipedal locomotion control, dynamic balance utilizing Zero-Moment Point (ZMP), whole-body operational
-              space
-              control, and Hardware-in-the-Loop simulation.
-            </p>
-            <div
-              style="font-family:'Share Tech Mono', monospace; font-size:11px; margin-bottom:12px; color:var(--orange); line-height: 1.5;">
-              ▶ Bipedal Gait Planning<br>
-              ▶ Full-Body Dynamic Balance
-            </div>
-            <div class="evo-status-pill">RESEARCH FOCUS</div>
+      <!-- March of Progress full-width canvas -->
+      <div class="reveal reveal-delay-1" style="margin-top:16px;">
+        <div style="border:1px solid var(--border);background:var(--panel);position:relative;padding:16px;clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,0 100%);">
+          <div style="position:absolute;top:-9px;left:16px;background:var(--bg);padding:0 8px;color:var(--cyan);letter-spacing:2px;font-size:10px;font-family:'Share Tech Mono',monospace;">// ROBOTIC EVOLUTION — BASIC DEVICES TO COMPLETE HUMANOID ROBOT</div>
+          <canvas id="evo-canvas" width="1000" height="320" style="width:100%;height:auto;display:block;background:#02070e;border:1px solid rgba(0,212,255,0.08);"></canvas>
+          <div style="display:flex;justify-content:space-between;margin-top:12px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:0.5px;flex-wrap:wrap;gap:4px;">
+            <span style="color:#5A6E72;">01 BASIC ROBOT</span>
+            <span style="color:#7A8D92;">02 MOBILE ROBOT</span>
+            <span style="color:#9AB0B5;">03 MANIPULATOR</span>
+            <span style="color:var(--cyan);">04 VISION-ENABLED</span>
+            <span style="color:#00ffcc;">05 AUTONOMOUS</span>
+            <span style="color:#e0a050;">06 BALANCING</span>
+            <span style="color:#ff6b35;">07 BIPED ROBOT</span>
+            <span style="color:#a890e0;">08 UPPER BODY</span>
+            <span style="color:var(--green);">09 COMPLETE HUMANOID</span>
           </div>
         </div>
+      </div>
 
-        <!-- Evolving Humanoid Canvas Visualizer -->
-        <div class="evo-visualizer-wrapper">
-          <div class="hud-corners">
-            <div class="hc-br"></div>
-            <div class="hc-bl"></div>
-          </div>
-          <div class="evo-visualizer-header">// EVOLUTIONARY SYSTEM BLUEPRINT</div>
-          <canvas id="evo-canvas" width="400" height="340"></canvas>
-          <div class="evo-visualizer-footer">
-            SYSTEM STATE: <span id="evo-state-text" style="color:var(--green)">PHASE 03 // ACTIVE DEVELOPMENT</span><br>
-            PLATFORM MODEL: <span id="evo-model-text" style="color:var(--cyan)">SEMI-HUMANOID COGNITIVE ROVER</span>
-          </div>
+      <!-- Phase cards below in 3x3 layout -->
+      <div class="evolution-grid reveal reveal-delay-2" style="margin-top:40px;">
+        <!-- Card 1 -->
+        <div class="evolution-card completed-phase" data-phase="1">
+          <div class="evo-phase">PHASE 01 // COMPLETED</div>
+          <h3 class="evo-title">Basic Robot</h3>
+          <p class="evo-desc">Small chassis with two wheels or a simple robotic arm executing reactively via simple sensors.</p>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;margin-bottom:12px;color:var(--cyan);line-height:1.4;">▶ Line Followers / Obstacle Avoid<br>▶ Pure Reactive Input Loops</div>
+          <div class="evo-status-pill">ELECTRONIC FOUNDATIONS</div>
+        </div>
+        <!-- Card 2 -->
+        <div class="evolution-card completed-phase" data-phase="2">
+          <div class="evo-phase">PHASE 02 // COMPLETED</div>
+          <h3 class="evo-title">Mobile Robot</h3>
+          <p class="evo-desc">Wheeled platforms carrying batteries, sensors, and controller boards moving independently.</p>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;margin-bottom:12px;color:var(--cyan);line-height:1.4;">▶ Wheel Encoders &amp; IMU Estimation<br>▶ Autonomous Wheel Drive</div>
+          <div class="evo-status-pill">BASIC LOCOMOTION</div>
+        </div>
+        <!-- Card 3 -->
+        <div class="evolution-card completed-phase" data-phase="3">
+          <div class="evo-phase">PHASE 03 // COMPLETED</div>
+          <h3 class="evo-title">Manipulator Robot</h3>
+          <p class="evo-desc">Multi-joint robotic arm with grippers. Handles precise pick-and-place and trajectory planning.</p>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;margin-bottom:12px;color:var(--cyan);line-height:1.4;">▶ Forward &amp; Inverse Kinematics<br>▶ Trajectory Path Generation</div>
+          <div class="evo-status-pill">MANIPULATION &amp; CONTROL</div>
+        </div>
+        <!-- Card 4 -->
+        <div class="evolution-card completed-phase" data-phase="4">
+          <div class="evo-phase">PHASE 04 // COMPLETED</div>
+          <h3 class="evo-title">Vision-Enabled Robot</h3>
+          <p class="evo-desc">Mobile robots or arm assemblies equipped with cameras. Uses computer vision and AI for recognition.</p>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;margin-bottom:12px;color:var(--cyan);line-height:1.4;">▶ Object &amp; Face Recognition<br>▶ Gesture Parsing &amp; Perception</div>
+          <div class="evo-status-pill">ENVIRONMENT UNDERSTANDING</div>
+        </div>
+        <!-- Card 5 -->
+        <div class="evolution-card completed-phase" data-phase="5">
+          <div class="evo-phase">PHASE 05 // COMPLETED</div>
+          <h3 class="evo-title">Autonomous Robot</h3>
+          <p class="evo-desc">Wheeled robots with cameras, LiDAR, and multiple sensors building maps and navigating autonomously.</p>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;margin-bottom:12px;color:var(--cyan);line-height:1.4;">▶ SLAM Map Localization<br>▶ Sensor Fusion Path Planning</div>
+          <div class="evo-status-pill">FULL NAVIGATION AUTO</div>
+        </div>
+        <!-- Card 6 -->
+        <div class="evolution-card active-phase" data-phase="6">
+          <div class="evo-phase" style="color:var(--orange);">PHASE 06 // ACTIVE</div>
+          <h3 class="evo-title" style="color:var(--orange);">Balancing Robot</h3>
+          <p class="evo-desc">Two-wheel self-balancing structure. Maintains dynamic stability using IMU feedback loops.</p>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;margin-bottom:12px;color:var(--orange);line-height:1.4;">▶ PID &amp; LQR Control Loops<br>▶ Real-time IMU Feedback</div>
+          <div class="evo-status-pill">DYNAMIC BALANCE CORE</div>
+        </div>
+        <!-- Card 7 -->
+        <div class="evolution-card active-phase" data-phase="7">
+          <div class="evo-phase" style="color:var(--green);">PHASE 07 // ACTIVE</div>
+          <h3 class="evo-title" style="color:var(--green);">Biped Robot</h3>
+          <p class="evo-desc">Two legs with multiple joint segments matching the lower body. Focuses on biped locomotion.</p>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;margin-bottom:12px;color:var(--green);line-height:1.4;">▶ gait Generation &amp; Dynamics<br>▶ Whole-Body Joint Coordination</div>
+          <div class="evo-status-pill">LEGGED LOCOMOTION</div>
+        </div>
+        <!-- Card 8 -->
+        <div class="evolution-card future-phase" data-phase="8">
+          <div class="evo-phase" style="color:#a890e0;">PHASE 08 // HORIZON</div>
+          <h3 class="evo-title" style="color:#a890e0;">Humanoid Upper Body</h3>
+          <p class="evo-desc">Biped legs integrated with a full torso, arm limbs, and head. Manipulates objects while balanced.</p>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;margin-bottom:12px;color:#a890e0;line-height:1.4;">▶ Balanced Upper Manipulation<br>▶ Force Sensor Interactive Feedback</div>
+          <div class="evo-status-pill">WHOLE-BODY INTEGRATION</div>
+        </div>
+        <!-- Card 9 -->
+        <div class="evolution-card future-phase" data-phase="9">
+          <div class="evo-phase" style="color:var(--green);">PHASE 09 // GOAL SYSTEM</div>
+          <h3 class="evo-title" style="color:var(--green);">Complete Humanoid</h3>
+          <p class="evo-desc">Full human-like structure containing head, torso, two arms, biped legs, and multi-DOF hands.</p>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:11px;margin-bottom:12px;color:var(--green);line-height:1.4;">▶ Unified ROS 2 Middleware System<br>▶ AI Cognitive Core Orchestration</div>
+          <div class="evo-status-pill">CULMINATION HORIZON</div>
         </div>
       </div>
     </section>
@@ -1947,7 +2655,7 @@
     <!-- ░░ EDUCATION + ACHIEVEMENT ░░ -->
     <section id="education">
       <div class="section-header reveal">
-        <span class="section-num">06</span>
+        <span class="section-num">07</span>
         <h2 class="section-title">BACKGROUND</h2>
         <div class="section-line"></div>
       </div>
@@ -2000,7 +2708,7 @@
     <!-- ░░ CONTACT ░░ -->
     <section id="contact">
       <div class="section-header reveal">
-        <span class="section-num">07</span>
+        <span class="section-num">08</span>
         <h2 class="section-title">CONTACT</h2>
         <div class="section-line"></div>
       </div>
@@ -2723,474 +3431,502 @@
       requestAnimationFrame(simLoop);
     })();
 
-    /* ── humanoid evolution visualizer logic ── */
+    /* ── MARCH OF PROGRESS — 9-stage robotic evolution canvas ── */
     (function () {
       const canvas = document.getElementById('evo-canvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      const W = canvas.width = 400;
-      const H = canvas.height = 340;
+      const W = 1000, H = 320;
+      canvas.width = W; canvas.height = H;
 
-      let activePhase = 3;
-      let targetPhase = 3;
-      let transitionAlpha = 1.0;
+      const GROUND = H - 40;
 
-      const phaseData = {
-        1: {
-          state: 'PHASE 01 // COMPLETED',
-          model: '5-DOF JOINT MANIPULATOR LINKAGE',
-          color: 'var(--cyan)'
-        },
-        2: {
-          state: 'PHASE 02 // COMPLETED',
-          model: 'WHEELED SLAM AUTONOMOUS ROVER',
-          color: 'var(--cyan)'
-        },
-        3: {
-          state: 'PHASE 03 // ACTIVE DEVELOPMENT',
-          model: 'SEMI-HUMANOID COGNITIVE ROVER',
-          color: 'var(--green)'
-        },
-        4: {
-          state: 'PHASE 04 // FUTURE HORIZON',
-          model: 'FULL BIPEDAL WALKING HUMANOID ROBOT',
-          color: 'var(--orange)'
-        }
-      };
+      // 9 developmental stages
+      const stages = [
+        { id: 1, label: '01 BASIC ROBOT',       color: '#5A6E72', phaseOff: 0.0, glow: 0 },
+        { id: 2, label: '02 MOBILE ROBOT',      color: '#7A8D92', phaseOff: 0.12, glow: 0 },
+        { id: 3, label: '03 MANIPULATOR',       color: '#9AB0B5', phaseOff: 0.25, glow: 0 },
+        { id: 4, label: '04 VISION-ENABLED',    color: '#00d4ff', phaseOff: 0.37, glow: 3 },
+        { id: 5, label: '05 AUTONOMOUS',        color: '#00ffcc', phaseOff: 0.50, glow: 5 },
+        { id: 6, label: '06 BALANCING',         color: '#e0a050', phaseOff: 0.62, glow: 8 },
+        { id: 7, label: '07 BIPED ROBOT',       color: '#ff6b35', phaseOff: 0.75, glow: 10 },
+        { id: 8, label: '08 UPPER BODY',        color: '#a890e0', phaseOff: 0.87, glow: 12 },
+        { id: 9, label: '09 COMPLETE HUMANOID',  color: '#00ff88', phaseOff: 1.0, glow: 20 }
+      ];
 
-      const stateText = document.getElementById('evo-state-text');
-      const modelText = document.getElementById('evo-model-text');
+      const SLOT_W = W / stages.length;
 
-      function updateTexts(p) {
-        if (!stateText || !modelText) return;
-        const data = phaseData[p];
-        stateText.textContent = data.state;
-        stateText.style.color = data.color;
-        modelText.textContent = data.model;
-      }
-
-      // Hover event listeners
-      document.querySelectorAll('.evolution-card').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-          const p = parseInt(card.dataset.phase);
-          if (p && p !== targetPhase) {
-            targetPhase = p;
-            transitionAlpha = 0; // reset transition for fade-in effect
-          }
-        });
-      });
-
-      // Background Grid
-      function drawEvoGrid() {
-        ctx.strokeStyle = 'rgba(0, 212, 255, 0.03)';
+      function drawGrid() {
+        ctx.strokeStyle = 'rgba(0,212,255,0.03)';
         ctx.lineWidth = 1;
-        const size = 20;
-        for (let x = 0; x < W; x += size) {
-          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-        }
-        for (let y = 0; y < H; y += size) {
-          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-        }
+        for (let x = 0; x < W; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+        for (let y = 0; y < H; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+        // ground line
+        ctx.strokeStyle = 'rgba(0,212,255,0.15)';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(0, GROUND); ctx.lineTo(W, GROUND); ctx.stroke();
       }
 
-      function drawRobotPhase1(t, alpha) {
-        ctx.strokeStyle = `rgba(0, 212, 255, ${alpha * 0.75})`;
-        ctx.lineWidth = 2.5;
-
-        // Base Mount
-        ctx.beginPath();
-        ctx.moveTo(150, 290);
-        ctx.lineTo(250, 290);
-        ctx.lineTo(230, 270);
-        ctx.lineTo(170, 270);
-        ctx.closePath();
+      function drawArrow(i) {
+        if (i >= stages.length - 1) return;
+        const x = (i + 1) * SLOT_W - 8;
+        const y = GROUND - 80;
+        ctx.strokeStyle = 'rgba(0,212,255,0.12)';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x - 5, y); ctx.lineTo(x + 5, y);
+        ctx.moveTo(x + 2, y - 3); ctx.lineTo(x + 5, y); ctx.lineTo(x + 2, y + 3);
         ctx.stroke();
-
-        // Joint points
-        const x0 = 200, y0 = 270;
-        const theta1 = -Math.PI / 2 + Math.sin(t * 1.5) * 0.25;
-        const l1 = 70;
-        const x1 = x0 + Math.cos(theta1) * l1;
-        const y1 = y0 + Math.sin(theta1) * l1;
-
-        const theta2 = theta1 - Math.PI / 4 + Math.cos(t * 2.2) * 0.35;
-        const l2 = 60;
-        const x2 = x1 + Math.cos(theta2) * l2;
-        const y2 = y1 + Math.sin(theta2) * l2;
-
-        const theta3 = theta2 + Math.sin(t * 3.0) * 0.25;
-        const l3 = 30;
-        const x3 = x2 + Math.cos(theta3) * l3;
-        const y3 = y2 + Math.sin(theta3) * l3;
-
-        // Draw links
-        ctx.beginPath();
-        ctx.moveTo(x0, y0);
-        ctx.lineTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.lineTo(x3, y3);
-        ctx.stroke();
-
-        // Draw Gripper Claws
-        const gripOpen = Math.abs(Math.sin(t * 2.0)) * 12;
-        ctx.save();
-        ctx.translate(x3, y3);
-        ctx.rotate(theta3);
-        ctx.beginPath();
-        // Left Claw
-        ctx.moveTo(0, 0);
-        ctx.lineTo(8, -gripOpen / 2);
-        ctx.lineTo(15, -gripOpen / 2 - 2);
-        // Right Claw
-        ctx.moveTo(0, 0);
-        ctx.lineTo(8, gripOpen / 2);
-        ctx.lineTo(15, gripOpen / 2 + 2);
-        ctx.stroke();
-        ctx.restore();
-
-        // Draw joints as glowing dots
-        ctx.fillStyle = `rgba(0, 255, 136, ${alpha})`;
-        [[x0, y0], [x1, y1], [x2, y2], [x3, y3]].forEach(pt => {
-          ctx.beginPath();
-          ctx.arc(pt[0], pt[1], 5, 0, Math.PI * 2);
-          ctx.fill();
-        });
       }
 
-      function drawRobotPhase2(t, alpha) {
-        ctx.strokeStyle = `rgba(0, 212, 255, ${alpha * 0.75})`;
-        ctx.lineWidth = 2.5;
+      // Analytical IK solver for leg joint (knee bends forward)
+      function solveIK(hx, hy, fx, fy, thighL, shinL) {
+        const dx = fx - hx;
+        const dy = fy - hy;
+        const D = Math.sqrt(dx * dx + dy * dy);
+        if (D >= thighL + shinL) {
+          return { kx: hx + (dx / D) * thighL, ky: hy + (dy / D) * thighL };
+        }
+        const alpha = Math.acos((thighL * thighL + D * D - shinL * shinL) / (2 * thighL * D));
+        const psi = Math.atan2(dy, dx);
+        return {
+          kx: hx + thighL * Math.cos(psi - alpha),
+          ky: hy + thighL * Math.sin(psi - alpha)
+        };
+      }
 
-        // Wheeled Chassis Base
-        ctx.beginPath();
-        ctx.rect(130, 240, 140, 40);
-        ctx.stroke();
+      function drawFigure(s, cx, t) {
+        const gait = t * 2.8 + s.phaseOff * Math.PI * 2;
+        ctx.strokeStyle = s.color;
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
 
-        // Spoke wheels
-        const wheelRadius = 22;
-        const wheelY = 285;
-        const w1X = 150, w2X = 250;
+        let hipX = cx;
+        let hipY = GROUND;
+        let shoulderX = cx;
+        let shoulderY = GROUND;
 
-        [w1X, w2X].forEach(wx => {
+        // Custom drawing per stage
+        if (s.id === 1) {
+          // --- 01 BASIC ROBOT (2-wheel simple chassis) ---
+          // Chassis
+          ctx.strokeRect(cx - 18, GROUND - 16, 36, 10);
+          // Wheels
+          const wRot = t * 6;
+          [cx - 10, cx + 10].forEach(wx => {
+            ctx.beginPath(); ctx.arc(wx, GROUND - 5, 5, 0, Math.PI * 2); ctx.stroke();
+            // spoke
+            ctx.beginPath();
+            ctx.moveTo(wx, GROUND - 5);
+            ctx.lineTo(wx + Math.cos(wRot) * 5, GROUND - 5 + Math.sin(wRot) * 5);
+            ctx.stroke();
+          });
+          // Sensor tip (reacts to ground)
           ctx.beginPath();
-          ctx.arc(wx, wheelY, wheelRadius, 0, Math.PI * 2);
+          ctx.moveTo(cx + 18, GROUND - 12);
+          ctx.lineTo(cx + 24, GROUND - 4);
+          ctx.stroke();
+          // LED blinks
+          if ((t * 3 | 0) % 2 === 0) {
+            ctx.fillStyle = '#ff3b30';
+            ctx.beginPath(); ctx.arc(cx - 8, GROUND - 20, 2, 0, Math.PI * 2); ctx.fill();
+          }
+
+        } else if (s.id === 2) {
+          // --- 02 MOBILE ROBOT (Dual-deck autonomous platform) ---
+          // Deck 1
+          ctx.strokeRect(cx - 24, GROUND - 24, 48, 8);
+          // Deck 2
+          ctx.strokeRect(cx - 20, GROUND - 38, 40, 8);
+          // Standoff pillars
+          ctx.beginPath();
+          ctx.moveTo(cx - 16, GROUND - 24); ctx.lineTo(cx - 16, GROUND - 30);
+          ctx.moveTo(cx + 16, GROUND - 24); ctx.lineTo(cx + 16, GROUND - 30);
+          ctx.stroke();
+          // Wheels
+          const wRot = t * 5;
+          [cx - 14, cx + 14].forEach(wx => {
+            ctx.beginPath(); ctx.arc(wx, GROUND - 8, 8, 0, Math.PI * 2); ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(wx, GROUND - 8);
+            ctx.lineTo(wx + Math.cos(wRot) * 8, GROUND - 8 + Math.sin(wRot) * 8);
+            ctx.stroke();
+          });
+          // Battery box block
+          ctx.strokeRect(cx - 10, GROUND - 22, 20, 5);
+
+        } else if (s.id === 3) {
+          // --- 03 MANIPULATOR (Robotic arm with gripper) ---
+          // Stationary heavy base
+          ctx.strokeRect(cx - 16, GROUND - 14, 32, 14);
+          ctx.fillStyle = s.color + '22';
+          ctx.fillRect(cx - 16, GROUND - 14, 32, 14);
+          
+          // Arm joints
+          const j0x = cx, j0y = GROUND - 14;
+          const theta1 = -Math.PI / 3 + Math.sin(t * 1.5) * 0.25;
+          const l1 = 28;
+          const j1x = j0x + Math.cos(theta1) * l1;
+          const j1y = j0y + Math.sin(theta1) * l1;
+
+          const theta2 = theta1 - Math.PI / 4 + Math.cos(t * 2.2) * 0.35;
+          const l2 = 24;
+          const j2x = j1x + Math.cos(theta2) * l2;
+          const j2y = j1y + Math.sin(theta2) * l2;
+
+          // Draw links
+          ctx.beginPath();
+          ctx.moveTo(j0x, j0y); ctx.lineTo(j1x, j1y); ctx.lineTo(j2x, j2y);
           ctx.stroke();
 
-          // rotating spokes
+          // Gripper fingers
+          const grip = Math.abs(Math.sin(t * 2.0)) * 6;
           ctx.save();
-          ctx.translate(wx, wheelY);
-          ctx.rotate(t * 3);
+          ctx.translate(j2x, j2y);
+          ctx.rotate(theta2);
           ctx.beginPath();
-          ctx.moveTo(-wheelRadius, 0); ctx.lineTo(wheelRadius, 0);
-          ctx.moveTo(0, -wheelRadius); ctx.lineTo(0, wheelRadius);
+          ctx.moveTo(0, 0); ctx.lineTo(6, -grip / 2); ctx.lineTo(10, -grip / 2 - 1);
+          ctx.moveTo(0, 0); ctx.lineTo(6, grip / 2); ctx.lineTo(10, grip / 2 + 1);
           ctx.stroke();
           ctx.restore();
-        });
 
-        // Tiny caster wheel in the middle
-        ctx.beginPath();
-        ctx.arc(200, 297, 10, 0, Math.PI * 2);
-        ctx.stroke();
+          // Joint dots
+          ctx.fillStyle = s.color;
+          [[j0x, j0y], [j1x, j1y], [j2x, j2y]].forEach(pt => {
+            ctx.beginPath(); ctx.arc(pt[0], pt[1], 3, 0, Math.PI * 2); ctx.fill();
+          });
 
-        // Mounted Arm (Scale down slightly)
-        const x0 = 200, y0 = 240;
-        const theta1 = -Math.PI / 2 + Math.sin(t * 1.2) * 0.2;
-        const l1 = 55;
-        const x1 = x0 + Math.cos(theta1) * l1;
-        const y1 = y0 + Math.sin(theta1) * l1;
-
-        const theta2 = theta1 - Math.PI / 4 + Math.cos(t * 2.0) * 0.3;
-        const l2 = 45;
-        const x2 = x1 + Math.cos(theta2) * l2;
-        const y2 = y1 + Math.sin(theta2) * l2;
-
-        ctx.beginPath();
-        ctx.moveTo(x0, y0);
-        ctx.lineTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-
-        ctx.fillStyle = `rgba(0, 255, 136, ${alpha})`;
-        [[x0, y0], [x1, y1], [x2, y2]].forEach(pt => {
+        } else if (s.id === 4) {
+          // --- 04 VISION-ENABLED (Platform + tall dual-camera mast) ---
+          // Base
+          ctx.strokeRect(cx - 20, GROUND - 18, 40, 10);
+          // Wheels
+          const wRot = t * 5;
+          [cx - 12, cx + 12].forEach(wx => {
+            ctx.beginPath(); ctx.arc(wx, GROUND - 6, 6, 0, Math.PI * 2); ctx.stroke();
+          });
+          // Vertical mast
           ctx.beginPath();
-          ctx.arc(pt[0], pt[1], 4, 0, Math.PI * 2);
+          ctx.moveTo(cx, GROUND - 18);
+          ctx.lineTo(cx, GROUND - 55);
+          ctx.stroke();
+          // Camera head pod
+          const headY = GROUND - 55;
+          ctx.strokeRect(cx - 10, headY - 6, 20, 6);
+          // Double circular lenses
+          ctx.fillStyle = '#00d4ff';
+          ctx.beginPath(); ctx.arc(cx - 5, headY - 3, 2.2, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(cx + 5, headY - 3, 2.2, 0, Math.PI * 2); ctx.fill();
+          // Translucent green/cyan Vision field cone
+          ctx.fillStyle = 'rgba(0, 212, 255, 0.06)';
+          ctx.beginPath();
+          ctx.moveTo(cx, headY - 3);
+          const scanW = 25;
+          ctx.lineTo(cx + 15 - scanW, GROUND);
+          ctx.lineTo(cx + 15 + scanW, GROUND);
+          ctx.closePath();
           ctx.fill();
-        });
 
-        // LiDAR scanner
-        ctx.strokeStyle = `rgba(0, 255, 136, ${alpha * 0.7})`;
-        ctx.beginPath();
-        ctx.rect(185, 220, 30, 20);
-        ctx.stroke();
-        // sweeping sensor arc
-        ctx.fillStyle = `rgba(0, 255, 136, ${alpha * 0.06})`;
-        const sweepAngle = (t * 2.5) % (Math.PI * 2);
-        ctx.beginPath();
-        ctx.moveTo(200, 220);
-        ctx.arc(200, 220, 120, sweepAngle - 0.25, sweepAngle + 0.25);
-        ctx.closePath();
-        ctx.fill();
-      }
+        } else if (s.id === 5) {
+          // --- 05 AUTONOMOUS (LiDAR turret mapping robot) ---
+          // Base
+          ctx.strokeRect(cx - 22, GROUND - 20, 44, 10);
+          // Wheels
+          [cx - 14, cx + 14].forEach(wx => {
+            ctx.beginPath(); ctx.arc(wx, GROUND - 6, 6, 0, Math.PI * 2); ctx.stroke();
+          });
+          // LiDAR mast & scanner unit
+          ctx.beginPath();
+          ctx.moveTo(cx, GROUND - 20); ctx.lineTo(cx, GROUND - 38);
+          ctx.stroke();
+          const lY = GROUND - 38;
+          ctx.strokeRect(cx - 8, lY - 6, 16, 6);
+          // Sweeping laser radial beam
+          const laserTheta = t * 4.5;
+          ctx.strokeStyle = 'rgba(0, 255, 204, 0.35)';
+          ctx.beginPath();
+          ctx.moveTo(cx, lY - 3);
+          ctx.lineTo(cx + Math.cos(laserTheta) * 32, lY - 3 + Math.sin(laserTheta) * 20);
+          ctx.stroke();
+          ctx.strokeStyle = s.color;
 
-      function drawRobotPhase3(t, alpha) {
-        // Semi-humanoid rover torso
-        ctx.strokeStyle = `rgba(0, 255, 136, ${alpha * 0.8})`;
-        ctx.lineWidth = 2.5;
+        } else if (s.id === 6) {
+          // --- 06 BALANCING (Two-wheel Segway style structure) ---
+          const wheelR = 15;
+          const wY = GROUND - wheelR;
+          const tilt = Math.sin(t * 5.0) * 0.11; // constant micro-balancing oscillation
+          
+          // Wheel spoke
+          ctx.beginPath(); ctx.arc(cx, wY, wheelR, 0, Math.PI * 2); ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(cx, wY);
+          ctx.lineTo(cx + Math.cos(t * 6) * wheelR, wY + Math.sin(t * 6) * wheelR);
+          ctx.stroke();
 
-        // Base Platform
-        ctx.beginPath();
-        ctx.rect(130, 260, 140, 30);
-        ctx.stroke();
+          // Tilting vertical frame
+          const topX = cx + Math.sin(tilt) * 48;
+          const topY = wY - Math.cos(tilt) * 48;
+          ctx.beginPath();
+          ctx.moveTo(cx, wY);
+          ctx.lineTo(topX, topY);
+          ctx.stroke();
+          // Controller box on top
+          ctx.save();
+          ctx.translate(topX, topY);
+          ctx.rotate(tilt);
+          ctx.strokeRect(-8, -12, 16, 12);
+          ctx.restore();
 
-        // Tracks/Wheels
-        ctx.beginPath();
-        ctx.arc(150, 295, 12, 0, Math.PI * 2);
-        ctx.arc(250, 295, 12, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 283); ctx.lineTo(250, 283);
-        ctx.moveTo(150, 307); ctx.lineTo(250, 307);
-        ctx.stroke();
+        } else if (s.id === 7) {
+          // --- 07 BIPED ROBOT (Jointed walking lower limbs) ---
+          const legLen = 50;
+          const bounce = Math.abs(Math.sin(gait * 2)) * 3;
+          hipY = GROUND - legLen * 1.6 + bounce;
+          hipX = cx;
 
-        // Torso Box
-        ctx.beginPath();
-        ctx.moveTo(170, 260);
-        ctx.lineTo(170, 180);
-        ctx.lineTo(230, 180);
-        ctx.lineTo(230, 260);
-        ctx.closePath();
-        ctx.stroke();
+          // Simple rectangular pelvic connection bar
+          ctx.strokeRect(cx - 8, hipY - 2, 16, 4);
 
-        // Neck & Head with Stereocameras
-        ctx.beginPath();
-        ctx.moveTo(200, 180);
-        ctx.lineTo(200, 160);
-        ctx.stroke();
-        // head sensor pod
-        ctx.beginPath();
-        ctx.ellipse(200, 150, 18, 10, 0, 0, Math.PI * 2);
-        ctx.stroke();
-        // camera lenses
-        ctx.fillStyle = `rgba(0, 212, 255, ${alpha})`;
-        ctx.beginPath();
-        ctx.arc(192, 150, 3, 0, Math.PI * 2);
-        ctx.arc(208, 150, 3, 0, Math.PI * 2);
-        ctx.fill();
+          // Legs walking with IK
+          const thighL = legLen * 0.85;
+          const shinL = legLen * 0.85;
+          const stride = 14;
+          const lift = 8;
 
-        // Vision cone
-        ctx.fillStyle = `rgba(0, 212, 255, ${alpha * 0.05})`;
-        ctx.beginPath();
-        ctx.moveTo(200, 150);
-        const targetScanX = 200 + Math.sin(t * 1.5) * 80;
-        ctx.lineTo(targetScanX - 45, 80);
-        ctx.lineTo(targetScanX + 45, 80);
-        ctx.closePath();
-        ctx.fill();
-
-        // Manipulator arm reaching out to cube
-        ctx.strokeStyle = `rgba(0, 212, 255, ${alpha * 0.85})`;
-        const ax0 = 175, ay0 = 200;
-        const a1Angle = -Math.PI / 4 + Math.sin(t * 1.5) * 0.2;
-        const ax1 = ax0 - Math.cos(a1Angle) * 45;
-        const ay1 = ay0 + Math.sin(a1Angle) * 45;
-
-        const a2Angle = a1Angle + Math.PI / 3 + Math.cos(t * 2.0) * 0.25;
-        const ax2 = ax1 + Math.cos(a2Angle) * 40;
-        const ay2 = ay1 + Math.sin(a2Angle) * 40;
-
-        ctx.beginPath();
-        ctx.moveTo(ax0, ay0);
-        ctx.lineTo(ax1, ay1);
-        ctx.lineTo(ax2, ay2);
-        ctx.stroke();
-
-        // Floating Target Cube
-        const cubeX = 290;
-        const cubeY = 170 + Math.sin(t * 2.5) * 10;
-        const cubeSize = 20;
-
-        ctx.strokeStyle = `rgba(0, 255, 136, ${alpha * 0.9})`;
-        ctx.strokeRect(cubeX - cubeSize / 2, cubeY - cubeSize / 2, cubeSize, cubeSize);
-        // glowing inner cube
-        ctx.fillStyle = `rgba(0, 255, 136, ${alpha * 0.3 * Math.abs(Math.sin(t * 3))})`;
-        ctx.fillRect(cubeX - cubeSize / 4, cubeY - cubeSize / 4, cubeSize / 2, cubeSize / 2);
-
-        // Target Box labels (Spatial AI overlay)
-        ctx.strokeStyle = `rgba(0, 255, 136, ${alpha * 0.5})`;
-        ctx.beginPath();
-        // Corners of bounding box
-        ctx.moveTo(cubeX - 18, cubeY - 18); ctx.lineTo(cubeX - 10, cubeY - 18);
-        ctx.moveTo(cubeX - 18, cubeY - 18); ctx.lineTo(cubeX - 18, cubeY - 10);
-        ctx.moveTo(cubeX + 18, cubeY + 18); ctx.lineTo(cubeX + 10, cubeY + 18);
-        ctx.moveTo(cubeX + 18, cubeY + 18); ctx.lineTo(cubeX + 18, cubeY + 10);
-        ctx.stroke();
-
-        ctx.font = '8px monospace';
-        ctx.fillStyle = `rgba(0, 255, 136, ${alpha * 0.8})`;
-        ctx.fillText("TARGET_LKD", cubeX - 25, cubeY - 22);
-      }
-
-      function drawRobotPhase4(t, alpha) {
-        // Bipedal humanoid walker
-        ctx.strokeStyle = `rgba(255, 107, 53, ${alpha * 0.8})`;
-        ctx.lineWidth = 2.5;
-
-        const headX = 200, headY = 80;
-        const neckY = 93;
-        const shoulderY = 105;
-        const hipY = 190;
-
-        // Head
-        ctx.beginPath();
-        ctx.arc(headX, headY, 13, 0, Math.PI * 2);
-        ctx.stroke();
-        // glowing visor
-        ctx.fillStyle = `rgba(255, 107, 53, ${alpha})`;
-        ctx.fillRect(headX - 8, headY - 3, 16, 4);
-
-        // Neck
-        ctx.beginPath();
-        ctx.moveTo(headX, headY + 13);
-        ctx.lineTo(headX, neckY);
-        ctx.stroke();
-
-        // Shoulders
-        ctx.beginPath();
-        ctx.moveTo(170, shoulderY);
-        ctx.lineTo(230, shoulderY);
-        ctx.stroke();
-
-        // Spine/Torso
-        ctx.beginPath();
-        ctx.moveTo(headX, neckY);
-        ctx.lineTo(headX, hipY);
-        ctx.stroke();
-
-        // Hips
-        ctx.beginPath();
-        ctx.moveTo(180, hipY);
-        ctx.lineTo(220, hipY);
-        ctx.stroke();
-
-        // Bipedal Walk Cycle Equations (sine / cosine offset)
-        const speed = 3.2;
-        const cycle = t * speed;
-
-        // Left Leg
-        const lHipX = 185;
-        const lHipAngle = Math.sin(cycle) * 0.35 + 0.1;
-        const lKneeX = lHipX + Math.sin(lHipAngle) * 45;
-        const lKneeY = hipY + Math.cos(lHipAngle) * 45;
-
-        const lKneeAngle = lHipAngle - Math.max(0, Math.sin(cycle + Math.PI / 2)) * 0.45;
-        const lAnkleX = lKneeX + Math.sin(lKneeAngle) * 40;
-        const lAnkleY = lKneeY + Math.cos(lKneeAngle) * 40;
-
-        ctx.beginPath();
-        ctx.moveTo(lHipX, hipY);
-        ctx.lineTo(lKneeX, lKneeY);
-        ctx.lineTo(lAnkleX, lAnkleY);
-        // foot
-        ctx.lineTo(lAnkleX + 12, lAnkleY);
-        ctx.stroke();
-
-        // Right Leg
-        const rHipX = 215;
-        const rHipAngle = Math.sin(cycle + Math.PI) * 0.35 + 0.1;
-        const rKneeX = rHipX + Math.sin(rHipAngle) * 45;
-        const rKneeY = hipY + Math.cos(rHipAngle) * 45;
-
-        const rKneeAngle = rHipAngle - Math.max(0, Math.sin(cycle + Math.PI + Math.PI / 2)) * 0.45;
-        const rAnkleX = rKneeX + Math.sin(rKneeAngle) * 40;
-        const rAnkleY = rKneeY + Math.cos(rKneeAngle) * 40;
-
-        ctx.beginPath();
-        ctx.moveTo(rHipX, hipY);
-        ctx.lineTo(rKneeX, rKneeY);
-        ctx.lineTo(rAnkleX, rAnkleY);
-        // foot
-        ctx.lineTo(rAnkleX + 12, rAnkleY);
-        ctx.stroke();
-
-        // Left Arm (swing opposite to leg)
-        const lShoulderX = 170;
-        const lArmAngle = Math.sin(cycle + Math.PI) * 0.25;
-        const lElbowX = lShoulderX + Math.sin(lArmAngle) * 35;
-        const lElbowY = shoulderY + Math.cos(lArmAngle) * 35;
-        const lWristX = lElbowX + Math.sin(lArmAngle - 0.2) * 30;
-        const lWristY = lElbowY + Math.cos(lArmAngle - 0.2) * 30;
-
-        ctx.beginPath();
-        ctx.moveTo(lShoulderX, shoulderY);
-        ctx.lineTo(lElbowX, lElbowY);
-        ctx.lineTo(lWristX, lWristY);
-        ctx.stroke();
-
-        // Right Arm (swing opposite to leg)
-        const rShoulderX = 230;
-        const rArmAngle = Math.sin(cycle) * 0.25;
-        const rElbowX = rShoulderX + Math.sin(rArmAngle) * 35;
-        const rElbowY = shoulderY + Math.cos(rArmAngle) * 35;
-        const rWristX = rElbowX + Math.sin(rArmAngle - 0.2) * 30;
-        const rWristY = rElbowY + Math.cos(rArmAngle - 0.2) * 30;
-
-        ctx.beginPath();
-        ctx.moveTo(rShoulderX, shoulderY);
-        ctx.lineTo(rElbowX, rElbowY);
-        ctx.lineTo(rWristX, rWristY);
-        ctx.stroke();
-
-        // ZMP indicator (glowing ground balancing dot)
-        const zmpX = 200 + Math.sin(cycle) * 15;
-        const zmpY = 277;
-        ctx.fillStyle = `rgba(255, 107, 53, ${alpha * 0.2 * Math.abs(Math.sin(t * 4))})`;
-        ctx.beginPath();
-        ctx.arc(zmpX, zmpY, 14, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = `rgba(255, 107, 53, ${alpha})`;
-        ctx.beginPath();
-        ctx.arc(zmpX, zmpY, 4, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.font = '8px monospace';
-        ctx.fillStyle = `rgba(255, 107, 53, ${alpha * 0.8})`;
-        ctx.fillText("ZMP_BALANCED", zmpX + 16, zmpY + 3);
-      }
-
-      function renderEvo(time) {
-        const t = time / 1000;
-
-        // Smooth transition alpha interpolation
-        if (activePhase !== targetPhase) {
-          transitionAlpha -= 0.08;
-          if (transitionAlpha <= 0) {
-            activePhase = targetPhase;
-            updateTexts(activePhase);
-            transitionAlpha = 0;
+          function drawBipedLeg(side) {
+            const phase = (side === 'L') ? gait : gait + Math.PI;
+            const p = phase % (2 * Math.PI);
+            const hx = hipX + (side === 'L' ? -4 : 4);
+            const hy = hipY;
+            let fx, fy;
+            if (p < Math.PI) {
+              fx = hx - stride * Math.cos(p);
+              fy = GROUND - lift * Math.sin(p);
+            } else {
+              fx = hx + stride * (1 - 2 * (p - Math.PI) / Math.PI);
+              fy = GROUND;
+            }
+            const { kx, ky } = solveIK(hx, hy, fx, fy, thighL, shinL);
+            ctx.beginPath();
+            ctx.moveTo(hx, hy); ctx.lineTo(kx, ky); ctx.lineTo(fx, fy);
+            ctx.lineTo(fx + 8, fy);
+            ctx.stroke();
+            // joints
+            ctx.fillStyle = s.color;
+            ctx.beginPath(); ctx.arc(kx, ky, 2, 0, Math.PI * 2); ctx.fill();
           }
-        } else if (transitionAlpha < 1.0) {
-          transitionAlpha += 0.08;
-          if (transitionAlpha > 1.0) transitionAlpha = 1.0;
+          drawBipedLeg('R');
+          drawBipedLeg('L');
+
+        } else if (s.id === 8 || s.id === 9) {
+          // --- 08 UPPER BODY & 09 COMPLETE HUMANOID ---
+          const legLen = s.id === 9 ? 58 : 54;
+          const bounce = Math.abs(Math.sin(gait * 2)) * 3.5;
+          hipY = GROUND - legLen * 1.65 + bounce;
+          hipX = cx;
+
+          const trunkLen = legLen * 0.8;
+          shoulderX = hipX;
+          shoulderY = hipY - trunkLen;
+
+          const neckLen = legLen * 0.14;
+          const neckTopX = shoulderX;
+          const neckTopY = shoulderY - neckLen;
+
+          const headR = legLen * 0.12;
+          const headX = neckTopX;
+          const headY = neckTopY - headR;
+
+          // Legs (IK)
+          const thighL = legLen * 0.85;
+          const shinL = legLen * 0.85;
+          const stride = 15;
+          const lift = 9;
+
+          function drawHumanoidLeg(side) {
+            const phase = (side === 'L') ? gait : gait + Math.PI;
+            const p = phase % (2 * Math.PI);
+            const hx = hipX + (side === 'L' ? -4 : 4);
+            const hy = hipY;
+            let fx, fy;
+            if (p < Math.PI) {
+              fx = hx - stride * Math.cos(p);
+              fy = GROUND - lift * Math.sin(p);
+            } else {
+              fx = hx + stride * (1 - 2 * (p - Math.PI) / Math.PI);
+              fy = GROUND;
+            }
+            const { kx, ky } = solveIK(hx, hy, fx, fy, thighL, shinL);
+            
+            ctx.beginPath();
+            ctx.moveTo(hx, hy); ctx.lineTo(kx, ky); ctx.lineTo(fx, fy);
+            ctx.lineTo(fx + 8, fy);
+            ctx.stroke();
+
+            // Armor panels for Stage 9
+            if (s.id === 9) {
+              ctx.fillStyle = 'rgba(0, 255, 136, 0.1)';
+              ctx.beginPath();
+              ctx.moveTo(hx - 2, hy); ctx.lineTo(kx - 1.5, ky - 1); ctx.lineTo(kx + 1.5, ky - 1); ctx.lineTo(hx + 2, hy);
+              ctx.closePath(); ctx.fill(); ctx.stroke();
+              
+              ctx.beginPath();
+              ctx.moveTo(kx - 1.5, ky + 1); ctx.lineTo(fx - 2, fy - 1); ctx.lineTo(fx + 4, fy - 1); ctx.lineTo(kx + 1.5, ky + 1);
+              ctx.closePath(); ctx.fill(); ctx.stroke();
+            }
+
+            ctx.fillStyle = s.color;
+            ctx.beginPath(); ctx.arc(kx, ky, 2, 0, Math.PI * 2); ctx.fill();
+          }
+          drawHumanoidLeg('R');
+          drawHumanoidLeg('L');
+
+          // Spine & Shoulders
+          ctx.beginPath();
+          ctx.moveTo(hipX, hipY);
+          ctx.lineTo(shoulderX, shoulderY);
+          ctx.stroke();
+
+          // Rib cages
+          if (s.id === 9) {
+            for (let r = 0.35; r <= 0.75; r += 0.2) {
+              ctx.beginPath();
+              ctx.ellipse(shoulderX, shoulderY + trunkLen * r, 8, 3, 0, 0, Math.PI * 2);
+              ctx.stroke();
+            }
+          }
+
+          ctx.beginPath();
+          ctx.moveTo(shoulderX - 9, shoulderY); ctx.lineTo(shoulderX + 9, shoulderY);
+          ctx.stroke();
+
+          // Arms Swing
+          const swingAmount = 0.22;
+          const ua = trunkLen * 0.5;
+          const la = trunkLen * 0.45;
+
+          function drawHumanoidArm(side) {
+            const phase = (side === 'L') ? gait + Math.PI : gait;
+            const hAngle = Math.sin(phase) * swingAmount;
+            const shX = shoulderX + (side === 'L' ? -8 : 8);
+            const shY = shoulderY + 2;
+            const ex = shX + ua * Math.sin(hAngle);
+            const ey = shY + ua * Math.cos(hAngle);
+            const wx = ex + la * Math.sin(hAngle - 0.15);
+            const wy = ey + la * Math.cos(hAngle - 0.15);
+
+            ctx.beginPath();
+            ctx.moveTo(shX, shY); ctx.lineTo(ex, ey); ctx.lineTo(wx, wy);
+            ctx.stroke();
+
+            ctx.fillStyle = s.color;
+            ctx.beginPath(); ctx.arc(ex, ey, 1.8, 0, Math.PI * 2); ctx.fill();
+          }
+          drawHumanoidArm('R');
+          drawHumanoidArm('L');
+
+          // Neck & Head
+          ctx.beginPath();
+          ctx.moveTo(shoulderX, shoulderY); ctx.lineTo(neckTopX, neckTopY);
+          ctx.stroke();
+
+          if (s.id === 8) {
+            // Open head frame ring
+            ctx.beginPath(); ctx.arc(headX, headY, headR, 0, Math.PI * 2); ctx.stroke();
+          } else {
+            // Covered head visor
+            ctx.fillStyle = 'rgba(2,7,14,0.9)';
+            ctx.beginPath(); ctx.arc(headX, headY, headR, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = s.color;
+            ctx.fillRect(headX - headR + 1.5, headY - 1.5, (headR - 1.5) * 2, 3);
+          }
+
+          // Stage 9 ZMP glowing balance indicator
+          if (s.id === 9) {
+            const zmpOffset = Math.sin(gait) * stride;
+            const zmpX = cx + zmpOffset;
+            ctx.fillStyle = 'rgba(0, 255, 136, 0.06)';
+            ctx.beginPath(); ctx.arc(zmpX, GROUND, 10, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = 'rgba(0, 255, 136, 0.25)';
+            ctx.beginPath(); ctx.arc(zmpX, GROUND, 3, 0, Math.PI * 2); ctx.stroke();
+          }
         }
 
-        ctx.clearRect(0, 0, W, H);
-        drawEvoGrid();
+        // --- Joint Hubs ---
+        if (s.id >= 7) {
+          ctx.fillStyle = s.color;
+          ctx.beginPath(); ctx.arc(hipX, hipY, 3, 0, Math.PI * 2); ctx.fill();
+          if (s.id >= 8) {
+            ctx.beginPath(); ctx.arc(shoulderX, shoulderY, 2.5, 0, Math.PI * 2); ctx.fill();
+          }
+        }
 
-        // Draw active phase with transition fade
-        if (activePhase === 1) drawRobotPhase1(t, transitionAlpha);
-        else if (activePhase === 2) drawRobotPhase2(t, transitionAlpha);
-        else if (activePhase === 3) drawRobotPhase3(t, transitionAlpha);
-        else if (activePhase === 4) drawRobotPhase4(t, transitionAlpha);
+        // --- Neon Glow shadow trail ---
+        if (s.glow > 0) {
+          ctx.save();
+          ctx.shadowColor = s.color;
+          ctx.shadowBlur = s.glow;
+          ctx.strokeStyle = s.color + '25';
+          ctx.lineWidth = 3.5;
+          ctx.beginPath();
+          if (s.id === 6) {
+            ctx.moveTo(cx, GROUND - 15); ctx.lineTo(cx + Math.sin(Math.sin(t * 5.0) * 0.11) * 48, GROUND - 15 - Math.cos(Math.sin(t * 5.0) * 0.11) * 48);
+          } else if (s.id >= 8) {
+            ctx.moveTo(hipX, hipY); ctx.lineTo(shoulderX, shoulderY);
+          }
+          ctx.stroke();
+          ctx.restore();
+          ctx.lineWidth = 2;
+        }
 
-        requestAnimationFrame(renderEvo);
+        // Stage Title Label
+        ctx.font = '8px "Share Tech Mono", monospace';
+        ctx.fillStyle = s.color;
+        ctx.globalAlpha = 0.65;
+        ctx.textAlign = 'center';
+        ctx.fillText(s.label, cx, GROUND + 18);
+        ctx.globalAlpha = 1;
       }
 
-      // Init texts and start loop
-      updateTexts(3);
-      requestAnimationFrame(renderEvo);
-    })();
+      let scanX = 0;
+      function drawScan() {
+        scanX = (scanX + 0.6) % W;
+        const g = ctx.createLinearGradient(scanX - 30, 0, scanX + 30, 0);
+        g.addColorStop(0, 'rgba(0,212,255,0)');
+        g.addColorStop(0.5, 'rgba(0,212,255,0.04)');
+        g.addColorStop(1, 'rgba(0,212,255,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(scanX - 30, 0, 60, H);
+      }
 
-    /* ── mobile navigation toggle ── */
+      function drawHUD(t) {
+        ctx.font = '9px "Share Tech Mono", monospace';
+        ctx.fillStyle = 'rgba(0,212,255,0.35)';
+        ctx.textAlign = 'right';
+        ctx.fillText('Σ EVOLUTIONARY TIMELINE // ' + (t * 1000 | 0) + ' ms', W - 10, 18);
+        ctx.textAlign = 'left';
+        ctx.fillStyle = 'rgba(0,212,255,0.25)';
+        ctx.fillText('// ROBOTICS DEVELOPMENT TIMELINE v5.2', 10, 18);
+      }
+
+      let lastT = null;
+      function loop(ts) {
+        if (!lastT) lastT = ts;
+        const t = ts / 1000;
+        ctx.clearRect(0, 0, W, H);
+        drawGrid();
+        drawScan();
+        drawHUD(t);
+        for (let i = 0; i < stages.length; i++) {
+          drawArrow(i);
+          const cx = SLOT_W * i + SLOT_W / 2;
+          drawFigure(stages[i], cx, t);
+        }
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    })();
+/* ── mobile navigation toggle ── */
     (function () {
       const toggleBtn = document.getElementById('nav-toggle');
       const navLinks = document.querySelector('.nav-links');
@@ -3217,6 +3953,36 @@
           });
         });
       }
+    })();
+
+    /* ── project filtering logic ── */
+    (function () {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active class from all buttons
+          filterButtons.forEach(b => b.classList.remove('active'));
+          // Add active class to clicked button
+          btn.classList.add('active');
+
+          const filterValue = btn.dataset.filter;
+
+          projectCards.forEach(card => {
+            if (filterValue === 'all') {
+              card.classList.remove('hidden');
+            } else {
+              const categories = card.dataset.category ? card.dataset.category.split(' ') : [];
+              if (categories.includes(filterValue)) {
+                card.classList.remove('hidden');
+              } else {
+                card.classList.add('hidden');
+              }
+            }
+          });
+        });
+      });
     })();
   </script>
 </body>
