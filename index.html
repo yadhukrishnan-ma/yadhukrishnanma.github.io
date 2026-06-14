@@ -1769,6 +1769,656 @@
       .banner-stat { border-right: none; border-bottom: 1px solid var(--border); padding: 12px 0; width: 100%; }
       .banner-stat:last-child { border-bottom: none; }
     }
+
+    /* ── id card component ── */
+    .id-card-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+    }
+
+    .id-card-container {
+      width: 290px;
+      height: 460px;
+      position: relative;
+    }
+
+    .id-card {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.2, 0.85, 0.35, 1.15);
+      border-radius: 16px;
+    }
+
+    .id-card.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .id-card-front,
+    .id-card-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    /* Gold Metal Theme for Front */
+    .id-card-front {
+      background: linear-gradient(135deg, #f9e4b7 0%, #d4af37 40%, #b8860b 60%, #ffeaa7 100%);
+      border: 1px solid #aa820a;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 
+                  0 0 15px rgba(212, 175, 55, 0.25),
+                  inset 0 0 20px rgba(212, 175, 55, 0.1);
+    }
+
+    .id-card-front::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 12px;
+      border: 1px solid rgba(170, 130, 10, 0.2);
+      pointer-events: none;
+    }
+
+    .card-glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .card-edge-highlight {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    }
+
+    /* Platinum Metal Theme for Back */
+    .id-card-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(135deg, #ffffff 0%, #e5e4e2 40%, #a1a8ad 60%, #f5f6f8 100%);
+      border: 1px solid #b8bcbe;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 
+                  0 0 15px rgba(229, 228, 226, 0.2),
+                  inset 0 0 20px rgba(229, 228, 226, 0.1);
+    }
+
+    .card-glow-back {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(229, 228, 226, 0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .card-edge-highlight-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #b8bcbe, transparent);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 35px;
+      border-bottom: 1px solid rgba(170, 130, 10, 0.25);
+      padding-bottom: 8px;
+    }
+
+    .corp-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo-svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .corp-logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 2px;
+    }
+
+    .security-chip {
+      width: 26px;
+      height: 20px;
+      background: linear-gradient(135deg, #e5c158, #b8860b);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .chip-lines {
+      position: absolute;
+      inset: 2px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    .chip-lines::before,
+    .chip-lines::after {
+      content: '';
+      position: absolute;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .chip-lines::before {
+      left: 30%;
+      top: 0;
+      width: 40%;
+      height: 100%;
+      border-left: 1px solid rgba(0, 0, 0, 0.2);
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    .chip-lines::after {
+      top: 30%;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    /* Steel-Printed Avatar Container */
+    .avatar-container {
+      width: 130px;
+      height: 150px;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      position: relative;
+      margin: 14px auto;
+      background: linear-gradient(135deg, #a1a8ad, #e5e4e2, #b8bcbe);
+      overflow: hidden;
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    }
+
+    .avatar-container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg,
+        rgba(0, 0, 0, 0.12),
+        rgba(0, 0, 0, 0.12) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.7) brightness(0.95);
+      mix-blend-mode: multiply;
+      opacity: 0.9;
+      transition: filter 0.3s, transform 0.3s;
+    }
+
+    .id-card:hover .avatar-img {
+      filter: grayscale(100%) contrast(1.9) brightness(1.05);
+      transform: scale(1.02);
+    }
+
+    .avatar-glow {
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .avatar-scan-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #ffd700;
+      box-shadow: 0 0 8px #ffd700;
+      z-index: 3;
+      pointer-events: none;
+      animation: scan-laser 4s linear infinite;
+    }
+
+    @keyframes scan-laser {
+      0% { top: 0%; opacity: 0.8; }
+      50% { top: 100%; opacity: 0.8; }
+      100% { top: 0%; opacity: 0.8; }
+    }
+
+    .hud-corner {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border: 1px solid rgba(26, 26, 26, 0.7);
+      z-index: 3;
+    }
+    .hud-corner.top-left { top: 4px; left: 4px; border-right: none; border-bottom: none; }
+    .hud-corner.top-right { top: 4px; right: 4px; border-left: none; border-bottom: none; }
+    .hud-corner.bottom-left { bottom: 4px; left: 4px; border-right: none; border-top: none; }
+    .hud-corner.bottom-right { bottom: 4px; right: 4px; border-left: none; border-top: none; }
+
+    .avatar-status {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26, 26, 26, 0.85);
+      border: 1px solid rgba(170, 130, 10, 0.3);
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 3;
+    }
+
+    .status-indicator {
+      width: 4px;
+      height: 4px;
+      background: #d4af37;
+      border-radius: 50%;
+      box-shadow: 0 0 4px #d4af37;
+    }
+    
+    .status-indicator.active {
+      animation: pulse-dot 1.2s infinite;
+    }
+
+    .status-text {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 7px;
+      letter-spacing: 1px;
+      color: #ffd700;
+      white-space: nowrap;
+    }
+
+    .card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 7.5px;
+      color: #6d5b2b;
+      letter-spacing: 1.5px;
+      margin-bottom: 2px;
+    }
+
+    .info-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 8px;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .subject-name {
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      color: #000000;
+      text-shadow: none;
+      white-space: normal;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .highlight-gold {
+      color: #8b6508;
+      font-weight: 700;
+    }
+    
+    .highlight-steel {
+      color: #4b525a;
+      font-weight: 700;
+    }
+
+    .font-mono {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid rgba(170, 130, 10, 0.2);
+      padding-top: 8px;
+      height: 38px;
+    }
+
+    .barcode-container {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .barcode-graphic {
+      height: 16px;
+      width: 180px;
+      background: repeating-linear-gradient(90deg,
+        #1a1a1a,
+        #1a1a1a 2px,
+        transparent 2px,
+        transparent 5px,
+        #1a1a1a 5px,
+        #1a1a1a 6px,
+        transparent 6px,
+        transparent 9px
+      );
+      opacity: 0.8;
+    }
+
+    .barcode-number {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 6.5px;
+      color: #6d5b2b;
+      letter-spacing: 1px;
+    }
+
+    .nfc-icon {
+      color: rgba(26, 26, 26, 0.6);
+      width: 22px;
+      height: 22px;
+    }
+
+    /* ── Back Face Details (Platinum) ── */
+    .back-header {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+      padding-bottom: 6px;
+    }
+
+    .back-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #22252a;
+      letter-spacing: 2px;
+    }
+
+    .back-sub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 7.5px;
+      color: #50555c;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .diagnostics-grid {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 12px;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .wireframe-avatar {
+      width: 80px;
+      height: 90px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e5e4e2, #b8bcbe);
+      clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+    }
+
+    .wireframe-avatar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .avatar-wireframe-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.6) brightness(0.95);
+      mix-blend-mode: multiply;
+      opacity: 0.8;
+    }
+
+    .wireframe-effect {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg,
+        rgba(0, 0, 0, 0.05),
+        rgba(0, 0, 0, 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      z-index: 2;
+    }
+
+    .scan-matrix {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.15) 100%);
+      z-index: 2;
+    }
+
+    .crypto-status {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .crypto-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+      padding-bottom: 3px;
+    }
+
+    .crypto-lbl {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      color: #50555c;
+      letter-spacing: 1px;
+    }
+
+    .crypto-val {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      color: #22252a;
+    }
+
+    .console-logs-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.35);
+      border-radius: 6px;
+      padding: 8px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      min-height: 140px;
+    }
+
+    .console-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 7.5px;
+      color: #ffd700;
+      letter-spacing: 1px;
+    }
+
+    .pulse-indicator {
+      width: 4px;
+      height: 4px;
+      background: #ffd700;
+      border-radius: 50%;
+      animation: pulse-dot 1s ease-in-out infinite;
+    }
+
+    .console-screen {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 7.5px;
+      color: #ffd700;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow-y: hidden;
+    }
+
+    .log-line {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .back-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(0, 0, 0, 0.15);
+      padding-top: 8px;
+      height: 38px;
+    }
+
+    .warning-text {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 5.5px;
+      color: rgba(120, 30, 30, 0.7);
+      max-width: 200px;
+      line-height: 1.3;
+      letter-spacing: 0.5px;
+    }
+
+    .qr-code-container {
+      width: 32px;
+      height: 32px;
+      padding: 2px;
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .qr-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .id-card-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 10px;
+      color: var(--dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    
+    .id-card-section:hover .id-card-hint {
+      opacity: 1;
+      color: #aa820a;
+    }
+
+    .id-card-container {
+      transform-style: preserve-3d;
+    }
+
+    /* Responsive adjustments for about section */
+    @media (min-width: 1025px) {
+      .about-grid {
+        grid-template-columns: 1.2fr 300px 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+      .about-stats {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .about-grid {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 32px;
+      }
+      .id-card-section {
+        grid-column: span 2;
+        justify-self: center;
+        margin: 20px 0;
+      }
+      .about-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .id-card-section {
+        justify-self: center;
+        margin: 10px 0;
+      }
+      .about-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .about-stats {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -1881,7 +2531,169 @@
             actually works in the real — messy, unpredictable — world.
           </p>
         </div>
-        <div class="about-stats reveal reveal-delay-2">
+
+        <!-- ID CARD COLUMN -->
+        <div class="id-card-section reveal reveal-delay-2">
+          <div class="id-card-container">
+            <div class="id-card" id="portfolio-id-card">
+              
+              <!-- FRONT FACE -->
+              <div class="id-card-front">
+                <div class="card-glow"></div>
+                <div class="card-edge-highlight"></div>
+                
+                <div class="card-header">
+                  <div class="corp-logo">
+                    <svg viewBox="0 0 100 100" class="logo-svg">
+                      <polygon points="50,15 85,35 85,75 50,95 15,75 15,35" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+                      <polygon points="50,28 73,42 73,70 50,84 27,70 27,42" stroke="rgba(170, 130, 10, 0.5)" stroke-width="1.5" fill="none"/>
+                      <circle cx="50" cy="56" r="10" fill="#ffd700"/>
+                    </svg>
+                    <span>ROBOTICS &amp; AUTONOMY</span>
+                  </div>
+                  <div class="security-chip">
+                    <div class="chip-lines"></div>
+                  </div>
+                </div>
+                
+                <div class="avatar-container">
+                  <div class="avatar-glow"></div>
+                  <div class="avatar-scan-line"></div>
+                  <img src="id.jpeg" alt="Yadhukrishnan M A" class="avatar-img">
+                  <div class="hud-corner top-left"></div>
+                  <div class="hud-corner top-right"></div>
+                  <div class="hud-corner bottom-left"></div>
+                  <div class="hud-corner bottom-right"></div>
+                  <div class="avatar-status">
+                    <span class="status-indicator active"></span>
+                    <span class="status-text">ENGRAVING ACTIVE</span>
+                  </div>
+                </div>
+                
+                <div class="card-info">
+                  <div class="info-group name-group">
+                    <div class="info-label">ROBOTICIST IDENTITY</div>
+                    <div class="info-value subject-name">YADHUKRISHNAN M A</div>
+                  </div>
+                  
+                  <div class="info-row">
+                    <div class="info-group">
+                      <div class="info-label">ACCESS LEVEL</div>
+                      <div class="info-value highlight-gold">[ CLASSIFIED // L5 ]</div>
+                    </div>
+                    <div class="info-group">
+                      <div class="info-label">CORE DISCIPLINE</div>
+                      <div class="info-value">0x7A9 // ██████████</div>
+                    </div>
+                  </div>
+                  
+                  <div class="info-row">
+                    <div class="info-group">
+                      <div class="info-label">DEVELOPMENT SECTOR</div>
+                      <div class="info-value">SEC-09 // ▰▰▰▰▰▰</div>
+                    </div>
+                    <div class="info-group">
+                      <div class="info-label">REGISTRATION ID</div>
+                      <div class="info-value font-mono">[ ENCRYPTED_HASH: 95d71f ]</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card-footer">
+                  <div class="barcode-container">
+                    <div class="barcode-graphic"></div>
+                    <div class="barcode-number">SEC_SYS_AUTH_VERIFIED_95d71f</div>
+                  </div>
+                  <div class="nfc-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-3-8c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- BACK FACE -->
+              <div class="id-card-back">
+                <div class="card-glow-back"></div>
+                <div class="card-edge-highlight-back"></div>
+                
+                <div class="back-header">
+                  <div class="back-title">ROBOTIC SYSTEM DIAGNOSTICS</div>
+                  <div class="back-sub">ROBOT COMMAND PANEL v95.0.4</div>
+                </div>
+                
+                <div class="diagnostics-grid">
+                  <div class="wireframe-avatar">
+                    <div class="wireframe-effect"></div>
+                    <img src="id.jpeg" alt="Encrypted Scan" class="avatar-wireframe-img">
+                    <div class="scan-matrix"></div>
+                  </div>
+                  
+                  <div class="crypto-status">
+                    <div class="crypto-item">
+                      <span class="crypto-lbl">NODE SYNC:</span>
+                      <span class="crypto-val highlight-steel">98.4%</span>
+                    </div>
+                    <div class="crypto-item">
+                      <span class="crypto-lbl">NET LATENCY:</span>
+                      <span class="crypto-val highlight-steel">0.14 ms</span>
+                    </div>
+                    <div class="crypto-item">
+                      <span class="crypto-lbl">ROS_DOMAIN_ID:</span>
+                      <span class="crypto-val font-mono">95</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="console-logs-container">
+                  <div class="console-header">
+                    <span>SECURITY CORES ACTIVE</span>
+                    <span class="pulse-indicator"></span>
+                  </div>
+                  <div class="console-screen" id="id-console-screen">
+                    <div class="log-line">> DIAGNOSTICS STANDBY...</div>
+                  </div>
+                </div>
+                
+                <div class="back-footer">
+                  <div class="warning-text">
+                    WARNING: RESTRICTED personnel only. Unauthorized firmware modifications trigger system-wipe protocols.
+                  </div>
+                  <div class="qr-code-container">
+                    <svg viewBox="0 0 100 100" class="qr-svg">
+                      <rect x="10" y="10" width="30" height="30" fill="#22252a"/>
+                      <rect x="15" y="15" width="20" height="20" fill="#e5e4e2"/>
+                      <rect x="20" y="20" width="10" height="10" fill="#22252a"/>
+                      
+                      <rect x="60" y="10" width="30" height="30" fill="#22252a"/>
+                      <rect x="65" y="15" width="20" height="20" fill="#e5e4e2"/>
+                      <rect x="70" y="20" width="10" height="10" fill="#22252a"/>
+                      
+                      <rect x="10" y="60" width="30" height="30" fill="#22252a"/>
+                      <rect x="15" y="65" width="20" height="20" fill="#e5e4e2"/>
+                      <rect x="20" y="70" width="10" height="10" fill="#22252a"/>
+                      
+                      <rect x="60" y="60" width="10" height="10" fill="#22252a"/>
+                      <rect x="80" y="60" width="10" height="10" fill="#22252a"/>
+                      <rect x="60" y="80" width="20" height="10" fill="#22252a"/>
+                      <rect x="80" y="70" width="10" height="20" fill="#22252a"/>
+                      <rect x="70" y="70" width="10" height="10" fill="#22252a"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="id-card-hint">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+              <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"/>
+            </svg>
+            <span>TAP TO DECRYPT IDENTITY</span>
+          </div>
+        </div>
+
+        <div class="about-stats reveal reveal-delay-3">
           <div class="stat-card hud-corners">
             <div class="hc-br"></div>
             <div class="hc-bl"></div>
@@ -3983,6 +4795,122 @@
           });
         });
       });
+    })();
+
+    /* ── 3D flippable ID card logic ── */
+    (document.ready || function () {
+      const container = document.querySelector('.id-card-container');
+      const card = document.getElementById('portfolio-id-card');
+      const consoleScreen = document.getElementById('id-console-screen');
+      const hintText = document.querySelector('.id-card-hint span');
+      
+      if (!container || !card) return;
+
+      const logLines = [
+        "> INITIALIZING ROBOT INTERFACE...",
+        "> CONNECTING TO ROS 2 MASTER... OK",
+        "> LAUNCHING AUTONOMOUS NODES...",
+        "> NAV2 STACK SYNCED: 100%",
+        "> SLAM MAP LOADED: ACTIVE",
+        "> HARDWARE INTERFACE: OPERATIONAL",
+        "> LIDAR & CAMERA STREAMS: ONLINE",
+        "> SUBSYSTEM DIAGNOSTICS: SECURE",
+        "> CONTROL PROTOCOL INITIALIZED."
+      ];
+      
+      let consoleInterval = null;
+
+      function startConsoleAnimation() {
+        if (!consoleScreen) return;
+        clearInterval(consoleInterval);
+        consoleScreen.innerHTML = '';
+        let lineIndex = 0;
+        let charIndex = 0;
+        let currentLine = document.createElement('div');
+        currentLine.className = 'log-line';
+        consoleScreen.appendChild(currentLine);
+        
+        consoleInterval = setInterval(() => {
+          if (lineIndex < logLines.length) {
+            const fullText = logLines[lineIndex];
+            if (charIndex < fullText.length) {
+              currentLine.textContent += fullText[charIndex];
+              charIndex++;
+            } else {
+              lineIndex++;
+              charIndex = 0;
+              if (lineIndex < logLines.length) {
+                currentLine = document.createElement('div');
+                currentLine.className = 'log-line';
+                consoleScreen.appendChild(currentLine);
+              }
+            }
+          } else {
+            clearInterval(consoleInterval);
+          }
+        }, 20);
+      }
+
+      function resetConsole() {
+        clearInterval(consoleInterval);
+        if (consoleScreen) {
+          consoleScreen.innerHTML = '<div class="log-line">> DIAGNOSTICS STANDBY...</div>';
+        }
+      }
+
+      // Parallax mouse move tilt effect
+      container.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 1025) {
+          card.style.transform = card.classList.contains('is-flipped') ? 'rotateY(180deg)' : 'rotateY(0deg)';
+          return;
+        }
+        
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((centerY - y) / centerY) * 15;
+        const rotateY = ((x - centerX) / centerX) * 15;
+        
+        if (card.classList.contains('is-flipped')) {
+          card.style.transform = `rotateX(${rotateX}deg) rotateY(${180 - rotateY}deg)`;
+        } else {
+          card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
+      });
+
+      // Mouse leave reset
+      container.addEventListener('mouseleave', () => {
+        card.style.transform = card.classList.contains('is-flipped') ? 'rotateY(180deg)' : 'rotateX(0deg) rotateY(0deg)';
+      });
+
+      // Toggle Flip Function
+      const toggleFlip = () => {
+        const isFlipped = card.classList.toggle('is-flipped');
+        if (isFlipped) {
+          card.style.transform = 'rotateY(180deg)';
+          if (hintText) hintText.textContent = 'TAP TO RESTORE SECURITY';
+          startConsoleAnimation();
+        } else {
+          card.style.transform = 'rotateY(0deg)';
+          if (hintText) hintText.textContent = 'TAP TO DECRYPT IDENTITY';
+          resetConsole();
+        }
+      };
+
+      // Click event
+      container.addEventListener('click', toggleFlip);
+      
+      const hint = document.querySelector('.id-card-hint');
+      if (hint) {
+        hint.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleFlip();
+        });
+      }
     })();
   </script>
 </body>
